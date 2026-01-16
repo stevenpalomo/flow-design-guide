@@ -5,10 +5,10 @@
 
 :root {
   /* Flow Brand Colors - Light Mode */
-  /* Base: moonlight (warm cream tones) + midnight (dark grays) + accent (teal) */
-  --color-primary: #418083;           /* accent/700 - teal */
-  --color-primary-dark: #2D595B;      /* accent/800 - darker teal */
-  --color-primary-light: rgba(65, 128, 131, 0.1);
+  /* Base: moonlight (warm cream tones) + midnight (dark grays) + accent (gold) */
+  --color-primary: #E89700;           /* accent/700 - gold */
+  --color-primary-dark: #C67F00;      /* accent/800 - darker gold */
+  --color-primary-light: rgba(232, 151, 0, 0.12);
   --color-bg: #F7F3EA;                /* moonlight/300 - cream background */
   --color-bg-secondary: #F5F1E5;      /* moonlight/400 */
   --color-surface: #F0EBE0;           /* moonlight/500 */
@@ -70,9 +70,9 @@
 
 /* Flow Brand Colors - Dark Mode */
 [data-theme="dark"] {
-  --color-primary: #5DD7DC;           /* accent/300 - light teal */
-  --color-primary-dark: #418083;      /* accent/700 */
-  --color-primary-light: rgba(93, 215, 220, 0.15);
+  --color-primary: #FFB833;           /* accent/300 - light gold */
+  --color-primary-dark: #E89700;      /* accent/700 */
+  --color-primary-light: rgba(255, 184, 51, 0.18);
   --color-bg: #121212;                /* midnight/950 */
   --color-bg-secondary: #1A1A1A;      /* midnight/900 */
   --color-surface: #2B2B2B;           /* midnight/700 */
