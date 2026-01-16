@@ -62,12 +62,8 @@
         }
 
         .pattern-numbers span {
-            min-width: 50px;
+            width: 80px;
             text-align: center;
-        }
-
-        .pattern-numbers span.wide {
-            min-width: 90px;
         }
 
         .pattern-display {
@@ -75,7 +71,7 @@
             align-items: center;
             justify-content: center;
             font-family: var(--font-mono);
-            font-size: clamp(1rem, 2.5vw, 1.75rem);
+            font-size: clamp(1.25rem, 3vw, 2rem);
             font-weight: 700;
             color: #E89700;
             gap: 0;
@@ -107,13 +103,9 @@
         }
 
         .pattern-labels span {
-            min-width: 50px;
+            width: 80px;
             text-align: center;
-            padding: 0 2px;
-        }
-
-        .pattern-labels span.wide {
-            min-width: 90px;
+            padding: 0 var(--space-1);
         }
 
         /* Code Tables Grid */
@@ -164,7 +156,7 @@
             font-family: var(--font-mono);
             font-weight: 600;
             color: var(--color-primary);
-            min-width: 40px;
+            min-width: 36px;
             flex-shrink: 0;
         }
 
@@ -372,7 +364,7 @@
                 <span>(5)</span>
                 <span>(6)</span>
                 <span>(7)</span>
-                <span class="wide">(8)</span>
+                <span>(8)</span>
                 <span>(9)</span>
             </div>
             <div class="pattern-display">
@@ -402,7 +394,7 @@
                 <span>Sub-zone</span>
                 <span>Discipline</span>
                 <span>Sheet Series</span>
-                <span class="wide">Descriptor</span>
+                <span>Descriptor</span>
                 <span>Revision No.</span>
             </div>
         </div>
