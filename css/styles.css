@@ -4,18 +4,24 @@
    ======================================== */
 
 :root {
-  /* Colors - Light Mode */
-  --color-primary: #E59500;
-  --color-primary-dark: #CC8400;
-  --color-primary-light: rgba(229, 149, 0, 0.1);
-  --color-bg: #ffffff;
-  --color-bg-secondary: #fafafa;
-  --color-surface: #f4f4f5;
-  --color-border: #e4e4e7;
-  --color-border-subtle: #f4f4f5;
-  --color-text: #18181b;
-  --color-text-secondary: #52525b;
-  --color-text-muted: #a1a1aa;
+  /* Flow Brand Colors - Light Mode */
+  /* Base: moonlight (warm cream tones) + midnight (dark grays) + accent (teal) */
+  --color-primary: #418083;           /* accent/700 - teal */
+  --color-primary-dark: #2D595B;      /* accent/800 - darker teal */
+  --color-primary-light: rgba(65, 128, 131, 0.1);
+  --color-bg: #F7F3EA;                /* moonlight/300 - cream background */
+  --color-bg-secondary: #F5F1E5;      /* moonlight/400 */
+  --color-surface: #F0EBE0;           /* moonlight/500 */
+  --color-border: #DDD8CB;            /* moonlight/600 */
+  --color-border-subtle: #E8E3D7;     /* moonlight/550 (interpolated) */
+  --color-text: #2B2B2B;              /* midnight/700 */
+  --color-text-secondary: #646464;    /* midnight/400 */
+  --color-text-muted: #8B8B8B;        /* midnight/300 */
+
+  /* Additional accent colors */
+  --color-jade: #29A383;              /* jade/500 - success/green */
+  --color-rose: #C4314B;              /* rose/500 - error/red */
+  --color-sunlight: #FFD666;          /* sunlight/400 - warning/yellow */
 
   /* Spacing - More generous like Radix */
   --space-1: 4px;
@@ -62,17 +68,24 @@
   --content-max-width: 720px;
 }
 
-/* Dark Mode */
+/* Flow Brand Colors - Dark Mode */
 [data-theme="dark"] {
-  --color-bg: #09090b;
-  --color-bg-secondary: #18181b;
-  --color-surface: #27272a;
-  --color-border: #27272a;
-  --color-border-subtle: #3f3f46;
-  --color-text: #fafafa;
-  --color-text-secondary: #a1a1aa;
-  --color-text-muted: #71717a;
-  --color-primary-light: rgba(229, 149, 0, 0.15);
+  --color-primary: #5DD7DC;           /* accent/300 - light teal */
+  --color-primary-dark: #418083;      /* accent/700 */
+  --color-primary-light: rgba(93, 215, 220, 0.15);
+  --color-bg: #121212;                /* midnight/950 */
+  --color-bg-secondary: #1A1A1A;      /* midnight/900 */
+  --color-surface: #2B2B2B;           /* midnight/700 */
+  --color-border: #3D3D3D;            /* midnight/600 */
+  --color-border-subtle: #4D4D4D;     /* midnight/500 */
+  --color-text: #FCFAF7;              /* moonlight/50 */
+  --color-text-secondary: #C2BDAE;    /* moonlight/700 */
+  --color-text-muted: #8B8B8B;        /* midnight/300 */
+
+  /* Additional accent colors - dark mode variants */
+  --color-jade: #5DDEB8;              /* jade/300 */
+  --color-rose: #ED8796;              /* rose/300 */
+  --color-sunlight: #FFE799;          /* sunlight/200 */
 }
 
 /* ========================================

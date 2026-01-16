@@ -102,7 +102,7 @@
                 left: 0;
                 right: 0;
                 bottom: 0;
-                background: var(--color-bg, #ffffff);
+                background: var(--color-bg, #F7F3EA);
                 z-index: 10000;
                 display: flex;
                 align-items: center;
@@ -111,7 +111,7 @@
             }
 
             [data-theme="dark"] #auth-overlay {
-                background: #09090b;
+                background: #121212;
             }
 
             .auth-container {
@@ -123,11 +123,11 @@
 
             .auth-logo {
                 margin-bottom: 40px;
-                color: var(--color-text, #18181b);
+                color: var(--color-text, #2B2B2B);
             }
 
             [data-theme="dark"] .auth-logo {
-                color: #fafafa;
+                color: #FCFAF7;
             }
 
             .auth-subtitle {
@@ -151,12 +151,12 @@
                 display: block;
                 font-size: 14px;
                 font-weight: 500;
-                color: var(--color-text, #18181b);
+                color: var(--color-text, #2B2B2B);
                 margin-bottom: 8px;
             }
 
             [data-theme="dark"] .auth-field label {
-                color: #fafafa;
+                color: #FCFAF7;
             }
 
             .auth-field input {
@@ -164,23 +164,23 @@
                 padding: 12px 16px;
                 font-size: 16px;
                 font-family: inherit;
-                border: 1px solid var(--color-border, #e4e4e7);
+                border: 1px solid var(--color-border, #DDD8CB);
                 border-radius: 8px;
-                background: var(--color-bg, #ffffff);
-                color: var(--color-text, #18181b);
+                background: var(--color-bg, #F7F3EA);
+                color: var(--color-text, #2B2B2B);
                 transition: border-color 0.15s ease, box-shadow 0.15s ease;
             }
 
             [data-theme="dark"] .auth-field input {
-                background: #18181b;
-                border-color: #27272a;
-                color: #fafafa;
+                background: #1A1A1A;
+                border-color: #3D3D3D;
+                color: #FCFAF7;
             }
 
             .auth-field input:focus {
                 outline: none;
-                border-color: #E59500;
-                box-shadow: 0 0 0 3px rgba(229, 149, 0, 0.1);
+                border-color: #418083;
+                box-shadow: 0 0 0 3px rgba(65, 128, 131, 0.1);
             }
 
             .auth-field input::placeholder {
@@ -200,7 +200,7 @@
                 font-size: 16px;
                 font-weight: 500;
                 font-family: inherit;
-                background: #E59500;
+                background: #418083;
                 color: white;
                 border: none;
                 border-radius: 8px;
@@ -209,7 +209,7 @@
             }
 
             .auth-button:hover {
-                background: #CC8400;
+                background: #2D595B;
             }
 
             .auth-button:active {
