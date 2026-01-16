@@ -81,6 +81,12 @@
             url: getBasePath() + 'standards/drawing-sheet-naming.html',
             keywords: ['naming', 'convention', 'file', 'sheet', 'sku', 'drawing', 'standard', 'project code', 'discipline', 'revision', 'architecture', 'structural', 'mechanical', 'electrical'],
             description: 'Standard file naming convention for drawing sheets'
+        },
+        {
+            title: 'BIM Folder Structure',
+            url: getBasePath() + 'standards/bim-folder-structure.html',
+            keywords: ['bim', 'folder', 'structure', 'directory', 'organization', 'revit', 'model', 'project', 'archive', 'discipline', 'coordination', 'linked', 'export', 'wip'],
+            description: 'Standardized folder structure for BIM projects'
         }
     ];
 
