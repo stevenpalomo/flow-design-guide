@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flow Design Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html" class="logo">
+                <svg viewBox="0 0 120 40" class="logo-svg">
+                    <text x="0" y="30" font-family="Poppins, sans-serif" font-size="28" font-weight="700" fill="currentColor">FLOW</text>
+                </svg>
+            </a>
+            <span class="logo-subtitle">Design Guide</span>
+        </div>
+
+        <div class="search-container">
+            <input type="search" class="search-input" placeholder="Search..." aria-label="Search">
+            <div class="search-results"></div>
+        </div>
+
+        <nav class="nav-menu">
+            <div class="nav-section">
+                <h3 class="nav-section-title">Getting Started</h3>
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link active">Overview</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-section">
+                <h3 class="nav-section-title">Standards</h3>
+                <ul class="nav-list">
+                    <li><a href="standards/drawing-sheet-naming.html" class="nav-link">Drawing Sheet Naming</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-section">
+                <h3 class="nav-section-title">Templates</h3>
+                <ul class="nav-list">
+                    <li><span class="nav-link disabled">Coming Soon</span></li>
+                </ul>
+            </div>
+
+            <div class="nav-section">
+                <h3 class="nav-section-title">Resources</h3>
+                <ul class="nav-list">
+                    <li><span class="nav-link disabled">Coming Soon</span></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="theme-toggle" aria-label="Toggle dark mode">
+                <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="page-header">
+            <h1 class="page-title">Flow Design Guide</h1>
+            <p class="page-subtitle">Standards and conventions for architectural documentation</p>
+        </header>
+
+        <section class="content-section">
+            <h2>Welcome</h2>
+            <p>The Flow Design Guide provides a comprehensive reference for architectural design and construction documentation standards. These guidelines ensure consistency across all Flow projects.</p>
+        </section>
+
+        <section class="content-section">
+            <h2>Quick Links</h2>
+            <div class="cards-grid">
+                <a href="standards/drawing-sheet-naming.html" class="card card-link">
+                    <div class="card-header">
+                        <h3 class="card-title">Drawing Sheet Naming</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>Standard file naming convention for all drawing sheets across Flow projects. Includes project codes, discipline tags, and revision tracking.</p>
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-action">View Standard →</span>
+                    </div>
+                </a>
+
+                <div class="card card-disabled">
+                    <div class="card-header">
+                        <h3 class="card-title">Title Block Standards</h3>
+                        <span class="badge">Coming Soon</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Guidelines for title block layout, required information, and branding elements.</p>
+                    </div>
+                </div>
+
+                <div class="card card-disabled">
+                    <div class="card-header">
+                        <h3 class="card-title">Layer Conventions</h3>
+                        <span class="badge">Coming Soon</span>
+                    </div>
+                    <div class="card-body">
+                        <p>CAD layer naming standards and organization for drawings.</p>
+                    </div>
+                </div>
+
+                <div class="card card-disabled">
+                    <div class="card-header">
+                        <h3 class="card-title">Symbol Library</h3>
+                        <span class="badge">Coming Soon</span>
+                    </div>
+                    <div class="card-body">
+                        <p>Standard symbols and annotations used across all drawings.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2>About Flow</h2>
+            <p>Flow is a residential property manager, housing developer, and lifestyle brand with operations in the US and Middle East. The Design, Engineering, and Construction (DEC) team is responsible for planning, designing, engineering, and executing renovations and ground-up construction of multifamily and mixed-use properties.</p>
+        </section>
+    </main>
+
+    <script src="js/nav.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

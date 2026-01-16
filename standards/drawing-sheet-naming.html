@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drawing Sheet Naming Convention | Flow Design Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        /* Page-specific styles for naming convention */
+        .hero-diagram {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: var(--space-8);
+            margin-bottom: var(--space-10);
+            text-align: center;
+        }
+
+        .hero-sku {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: var(--space-1);
+        }
+
+        .sku-segment {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 var(--space-3);
+        }
+
+        .sku-number {
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+            margin-bottom: var(--space-2);
+        }
+
+        .sku-value {
+            font-family: 'Poppins', sans-serif;
+            font-size: var(--text-2xl);
+            font-weight: 600;
+            color: var(--color-primary);
+            letter-spacing: 0.05em;
+        }
+
+        .sku-separator {
+            font-size: var(--text-2xl);
+            font-weight: 300;
+            color: var(--color-text-muted);
+            padding-bottom: 2px;
+        }
+
+        .sku-label {
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+            margin-top: var(--space-2);
+        }
+
+        /* Component Cards Grid */
+        .component-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-5);
+        }
+
+        @media (max-width: 900px) {
+            .component-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .component-card {
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+        }
+
+        .component-card:hover {
+            border-color: var(--color-border-subtle);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .component-header {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-4);
+            margin-bottom: var(--space-4);
+        }
+
+        .component-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--color-primary);
+            color: white;
+            border-radius: 50%;
+            font-size: var(--text-sm);
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .component-title-group {
+            flex: 1;
+        }
+
+        .component-title {
+            font-size: var(--text-base);
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--space-1);
+        }
+
+        .component-code {
+            font-family: var(--font-mono);
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--color-primary);
+            letter-spacing: 0.05em;
+        }
+
+        .component-description {
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-4);
+            line-height: 1.6;
+        }
+
+        .component-options {
+            border-top: 1px solid var(--color-border);
+            padding-top: var(--space-4);
+        }
+
+        .component-options h4 {
+            font-size: var(--text-xs);
+            font-weight: 600;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--space-3);
+        }
+
+        .options-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+        }
+
+        .option-tag {
+            font-size: var(--text-xs);
+            padding: var(--space-1) var(--space-3);
+            background: var(--color-surface);
+            border-radius: var(--radius-md);
+            color: var(--color-text-secondary);
+        }
+
+        .guidance-note {
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+            font-style: italic;
+            margin-top: var(--space-4);
+            padding-top: var(--space-3);
+            border-top: 1px dashed var(--color-border);
+            line-height: 1.5;
+        }
+
+        /* How to Read Section */
+        .example-breakdown {
+            background: var(--color-surface);
+            padding: var(--space-6);
+            border-radius: var(--radius-lg);
+            margin-top: var(--space-5);
+        }
+
+        .example-breakdown code {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            display: block;
+            margin-bottom: var(--space-4);
+        }
+
+        .example-breakdown p {
+            color: var(--color-text-secondary);
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        .example-breakdown strong {
+            color: var(--color-text);
+        }
+
+        /* Mobile Hero Adjustments */
+        @media (max-width: 600px) {
+            .hero-diagram {
+                padding: var(--space-5);
+            }
+
+            .hero-sku {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+            }
+
+            .sku-separator {
+                display: none;
+            }
+
+            .sku-segment {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: var(--space-3) 0;
+                border-bottom: 1px solid var(--color-border);
+            }
+
+            .sku-segment:last-child {
+                border-bottom: none;
+            }
+
+            .sku-number {
+                margin-bottom: 0;
+                order: 0;
+            }
+
+            .sku-value {
+                font-size: var(--text-lg);
+                order: 1;
+            }
+
+            .sku-label {
+                margin-top: 0;
+                order: 2;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="../index.html" class="logo">
+                <svg viewBox="0 0 120 40" class="logo-svg">
+                    <text x="0" y="30" font-family="Poppins, sans-serif" font-size="28" font-weight="700" fill="currentColor">FLOW</text>
+                </svg>
+            </a>
+            <span class="logo-subtitle">Design Guide</span>
+        </div>
+
+        <div class="search-container">
+            <input type="search" class="search-input" placeholder="Search..." aria-label="Search">
+            <div class="search-results"></div>
+        </div>
+
+        <nav class="nav-menu">
+            <div class="nav-section">
+                <h3 class="nav-section-title">Getting Started</h3>
+                <ul class="nav-list">
+                    <li><a href="../index.html" class="nav-link">Overview</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-section">
+                <h3 class="nav-section-title">Standards</h3>
+                <ul class="nav-list">
+                    <li><a href="drawing-sheet-naming.html" class="nav-link active">Drawing Sheet Naming</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-section">
+                <h3 class="nav-section-title">Templates</h3>
+                <ul class="nav-list">
+                    <li><span class="nav-link disabled">Coming Soon</span></li>
+                </ul>
+            </div>
+
+            <div class="nav-section">
+                <h3 class="nav-section-title">Resources</h3>
+                <ul class="nav-list">
+                    <li><span class="nav-link disabled">Coming Soon</span></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="theme-toggle" aria-label="Toggle dark mode">
+                <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </div>
+    </aside>
+
+    <!-- On-Page Table of Contents -->
+    <nav class="toc">
+        <h4 class="toc-title">On this page</h4>
+        <ul class="toc-list">
+            <li><a href="#purpose" class="toc-link">Purpose</a></li>
+            <li><a href="#structure" class="toc-link">Structure</a></li>
+            <li><a href="#components" class="toc-link">Components</a></li>
+            <li><a href="#how-to-read" class="toc-link">How to Read</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="page-header">
+            <div class="breadcrumb">
+                <a href="../index.html">Home</a> / <a href="#">Standards</a> / <span>Drawing Sheet Naming</span>
+            </div>
+            <h1 class="page-title">Drawing Sheet Naming Convention</h1>
+            <p class="page-subtitle">Standard file naming structure for all architectural drawing sheets across Flow projects.</p>
+        </header>
+
+        <div class="page-actions">
+            <button class="btn btn-primary" onclick="window.print()">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 9V2h12v7"></path>
+                    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                    <rect x="6" y="14" width="12" height="8"></rect>
+                </svg>
+                Export PDF
+            </button>
+        </div>
+
+        <!-- Purpose Section -->
+        <section id="purpose" class="content-section">
+            <h2>Purpose</h2>
+            <p>This naming convention ensures consistent file organization across all Flow projects. It enables quick identification of drawing content, supports efficient searching, and maintains clear revision tracking throughout the project lifecycle.</p>
+        </section>
+
+        <!-- Structure Section -->
+        <section id="structure" class="content-section">
+            <h2>Structure</h2>
+            <div class="hero-diagram">
+                <div class="hero-sku">
+                    <div class="sku-segment">
+                        <span class="sku-number">(1)</span>
+                        <span class="sku-value">FLOW</span>
+                        <span class="sku-label">Brand</span>
+                    </div>
+                    <span class="sku-separator">-</span>
+                    <div class="sku-segment">
+                        <span class="sku-number">(2)</span>
+                        <span class="sku-value">OLY</span>
+                        <span class="sku-label">Project</span>
+                    </div>
+                    <span class="sku-separator">-</span>
+                    <div class="sku-segment">
+                        <span class="sku-number">(3)</span>
+                        <span class="sku-value">DWG</span>
+                        <span class="sku-label">Doc Type</span>
+                    </div>
+                    <span class="sku-separator">-</span>
+                    <div class="sku-segment">
+                        <span class="sku-number">(4)</span>
+                        <span class="sku-value">A</span>
+                        <span class="sku-label">Zone</span>
+                    </div>
+                    <span class="sku-separator">-</span>
+                    <div class="sku-segment">
+                        <span class="sku-number">(5)</span>
+                        <span class="sku-value">AR</span>
+                        <span class="sku-label">Discipline</span>
+                    </div>
+                    <span class="sku-separator">-</span>
+                    <div class="sku-segment">
+                        <span class="sku-number">(6)</span>
+                        <span class="sku-value">2</span>
+                        <span class="sku-label">Series</span>
+                    </div>
+                    <span class="sku-separator">-</span>
+                    <div class="sku-segment">
+                        <span class="sku-number">(7)</span>
+                        <span class="sku-value">01</span>
+                        <span class="sku-label">Descriptor</span>
+                    </div>
+                    <span class="sku-separator">-</span>
+                    <div class="sku-segment">
+                        <span class="sku-number">(8)</span>
+                        <span class="sku-value">R0</span>
+                        <span class="sku-label">Revision</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Components Section -->
+        <section id="components" class="content-section">
+            <h2>Components</h2>
+            <p>Each segment serves a specific purpose in the naming hierarchy. Click on a component to learn more about its usage and available options.</p>
+
+            <div class="component-cards">
+                <!-- Card 1: Flow -->
+                <div class="component-card">
+                    <div class="component-header">
+                        <span class="component-number">1</span>
+                        <div class="component-title-group">
+                            <h3 class="component-title">Flow</h3>
+                            <span class="component-code">FLOW</span>
+                        </div>
+                    </div>
+                    <p class="component-description">Brand identifier. Fixed value for all Flow projects to ensure consistent branding across deliverables.</p>
+                    <div class="component-options">
+                        <h4>Options</h4>
+                        <div class="options-list">
+                            <span class="option-tag">FLOW (Fixed)</span>
+                        </div>
+                    </div>
+                    <p class="guidance-note">Always use "FLOW" to maintain brand consistency across all project documentation.</p>
+                </div>
+
+                <!-- Card 2: Project Code -->
+                <div class="component-card">
+                    <div class="component-header">
+                        <span class="component-number">2</span>
+                        <div class="component-title-group">
+                            <h3 class="component-title">Project Code</h3>
+                            <span class="component-code">OLY</span>
+                        </div>
+                    </div>
+                    <p class="component-description">3-letter code identifying the specific project. Assigned by project management at project initiation.</p>
+                    <div class="component-options">
+                        <h4>Examples</h4>
+                        <div class="options-list">
+                            <span class="option-tag">OLY - Olaya</span>
+                            <span class="option-tag">MIA - Miami</span>
+                            <span class="option-tag">ATL - Atlanta</span>
+                        </div>
+                    </div>
+                    <p class="guidance-note">Contact the Project Manager for new project code assignments.</p>
+                </div>
+
+                <!-- Card 3: Document Type -->
+                <div class="component-card">
+                    <div class="component-header">
+                        <span class="component-number">3</span>
+                        <div class="component-title-group">
+                            <h3 class="component-title">Document Type</h3>
+                            <span class="component-code">DWG</span>
+                        </div>
+                    </div>
+                    <p class="component-description">Identifies the type of document or deliverable being produced.</p>
+                    <div class="component-options">
+                        <h4>Options</h4>
+                        <div class="options-list">
+                            <span class="option-tag">DWG - Drawing</span>
+                            <span class="option-tag">SPEC - Specification</span>
+                            <span class="option-tag">CALC - Calculation</span>
+                            <span class="option-tag">RPT - Report</span>
+                        </div>
+                    </div>
+                    <p class="guidance-note">Select the type that best matches the document's primary purpose.</p>
+                </div>
+
+                <!-- Card 4: Zone/Volume -->
+                <div class="component-card">
+                    <div class="component-header">
+                        <span class="component-number">4</span>
+                        <div class="component-title-group">
+                            <h3 class="component-title">Zone / Volume</h3>
+                            <span class="component-code">A</span>
+                        </div>
+                    </div>
+                    <p class="component-description">Building zone, volume, or system identifier for organizing drawings by location.</p>
+                    <div class="component-options">
+                        <h4>Examples</h4>
+                        <div class="options-list">
+                            <span class="option-tag">A - Building A</span>
+                            <span class="option-tag">B - Building B</span>
+                            <span class="option-tag">P - Podium</span>
+                            <span class="option-tag">G - Garage</span>
+                        </div>
+                    </div>
+                    <p class="guidance-note">Use single letters for main zones. Sub-zones use A1, A2 format.</p>
+                </div>
+
+                <!-- Card 5: Discipline -->
+                <div class="component-card">
+                    <div class="component-header">
+                        <span class="component-number">5</span>
+                        <div class="component-title-group">
+                            <h3 class="component-title">Discipline</h3>
+                            <span class="component-code">AR</span>
+                        </div>
+                    </div>
+                    <p class="component-description">Engineering or design discipline responsible for the drawing content.</p>
+                    <div class="component-options">
+                        <h4>Options</h4>
+                        <div class="options-list">
+                            <span class="option-tag">AR - Architecture</span>
+                            <span class="option-tag">ST - Structural</span>
+                            <span class="option-tag">ME - Mechanical</span>
+                            <span class="option-tag">EL - Electrical</span>
+                            <span class="option-tag">PL - Plumbing</span>
+                            <span class="option-tag">FP - Fire Protection</span>
+                            <span class="option-tag">ID - Interior Design</span>
+                            <span class="option-tag">LA - Landscape</span>
+                            <span class="option-tag">ELV - Low Voltage</span>
+                        </div>
+                    </div>
+                    <p class="guidance-note">Match discipline to lead consultant for the drawing content.</p>
+                </div>
+
+                <!-- Card 6: Sheet Series -->
+                <div class="component-card">
+                    <div class="component-header">
+                        <span class="component-number">6</span>
+                        <div class="component-title-group">
+                            <h3 class="component-title">Sheet Series</h3>
+                            <span class="component-code">2</span>
+                        </div>
+                    </div>
+                    <p class="component-description">Drawing series number indicating the type of content shown.</p>
+                    <div class="component-options">
+                        <h4>Options</h4>
+                        <div class="options-list">
+                            <span class="option-tag">0 - General</span>
+                            <span class="option-tag">1 - Plans</span>
+                            <span class="option-tag">2 - Elevations</span>
+                            <span class="option-tag">3 - Sections</span>
+                            <span class="option-tag">4 - Enlarged Plans</span>
+                            <span class="option-tag">5 - Interior Elev.</span>
+                            <span class="option-tag">6 - RCP</span>
+                            <span class="option-tag">7 - Roof</span>
+                            <span class="option-tag">8 - Schedules</span>
+                            <span class="option-tag">9 - Details</span>
+                        </div>
+                    </div>
+                    <p class="guidance-note">Follow standard AIA sheet organization conventions.</p>
+                </div>
+
+                <!-- Card 7: Descriptor -->
+                <div class="component-card">
+                    <div class="component-header">
+                        <span class="component-number">7</span>
+                        <div class="component-title-group">
+                            <h3 class="component-title">Descriptor</h3>
+                            <span class="component-code">01</span>
+                        </div>
+                    </div>
+                    <p class="component-description">Sequential sheet number within the series for ordering and reference.</p>
+                    <div class="component-options">
+                        <h4>Format</h4>
+                        <div class="options-list">
+                            <span class="option-tag">01 - 99</span>
+                        </div>
+                    </div>
+                    <p class="guidance-note">Start at 01 for each series. Leave gaps (01, 05, 10) for future sheets.</p>
+                </div>
+
+                <!-- Card 8: Revision -->
+                <div class="component-card">
+                    <div class="component-header">
+                        <span class="component-number">8</span>
+                        <div class="component-title-group">
+                            <h3 class="component-title">Revision</h3>
+                            <span class="component-code">R0</span>
+                        </div>
+                    </div>
+                    <p class="component-description">Current revision status tracking changes throughout the project.</p>
+                    <div class="component-options">
+                        <h4>Options</h4>
+                        <div class="options-list">
+                            <span class="option-tag">R0 - Initial Issue</span>
+                            <span class="option-tag">R1, R2... - Revisions</span>
+                            <span class="option-tag">P1, P2... - Preliminary</span>
+                        </div>
+                    </div>
+                    <p class="guidance-note">Increment revision with each formal issue. Use P for draft submissions.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How to Read Section -->
+        <section id="how-to-read" class="content-section">
+            <h2>How to Read a Sheet Name</h2>
+            <p>Each segment provides specific information about the drawing. Here's how to decode a complete file name:</p>
+
+            <div class="example-breakdown">
+                <code>FLOW-OLY-DWG-A-AR-2-01-R0</code>
+                <p>
+                    "This is a <strong>Flow</strong> project drawing for <strong>Olaya</strong>, specifically a <strong>Drawing</strong> for <strong>Building A</strong>, prepared by <strong>Architecture</strong>, showing <strong>Elevations</strong> (series 2), sheet <strong>01</strong>, at <strong>initial issue</strong>."
+                </p>
+            </div>
+        </section>
+
+        <!-- Related Topics -->
+        <div class="related-topics">
+            <h3>Take it further</h3>
+            <div class="related-links">
+                <a href="#" class="related-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="3" y1="9" x2="21" y2="9"></line>
+                        <line x1="9" y1="21" x2="9" y2="9"></line>
+                    </svg>
+                    Title Block Standards
+                </a>
+                <a href="#" class="related-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                    </svg>
+                    Layer Conventions
+                </a>
+                <a href="#" class="related-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                        <polyline points="2 17 12 22 22 17"></polyline>
+                        <polyline points="2 12 12 17 22 12"></polyline>
+                    </svg>
+                    Project Codes
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/nav.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+        // On-page TOC active state tracking
+        const tocLinks = document.querySelectorAll('.toc-link');
+        const sections = document.querySelectorAll('section[id]');
+
+        function updateTocActive() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (scrollY >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            tocLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateTocActive);
+        updateTocActive();
+    </script>
+</body>
+</html>
