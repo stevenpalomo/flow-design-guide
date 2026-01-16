@@ -11,169 +11,7 @@
     <style>
         /* Page-specific styles for folder structure visualization */
 
-        /* Folder Diagram - Main Container */
-        .folder-diagram {
-            background: var(--color-bg);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-lg);
-            padding: var(--space-8);
-            margin: var(--space-8) 0;
-            overflow-x: auto;
-        }
-
-        .folder-diagram-inner {
-            display: flex;
-            gap: var(--space-4);
-            min-width: 900px;
-        }
-
-        /* Folder Column */
-        .folder-column {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-2);
-        }
-
-        /* Folder Item */
-        .folder-item {
-            display: flex;
-            align-items: center;
-            gap: var(--space-2);
-            padding: var(--space-2) var(--space-3);
-            background: var(--color-surface);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            font-size: var(--text-sm);
-            color: var(--color-text);
-            white-space: nowrap;
-            transition: all var(--transition-fast);
-        }
-
-        .folder-item:hover {
-            border-color: var(--color-primary);
-        }
-
-        .folder-item.highlighted {
-            background: #FFF8E7;
-            border: 2px solid #E5A000;
-        }
-
-        [data-theme="dark"] .folder-item.highlighted {
-            background: rgba(229, 160, 0, 0.15);
-            border-color: #E5A000;
-        }
-
-        .folder-item.highlighted .folder-name {
-            font-weight: 600;
-        }
-
-        .folder-icon {
-            width: 16px;
-            height: 16px;
-            color: var(--color-text-muted);
-            flex-shrink: 0;
-        }
-
-        .folder-item.highlighted .folder-icon {
-            color: #E5A000;
-        }
-
-        /* Connection Arrow */
-        .connection-arrow {
-            display: flex;
-            align-items: center;
-            padding: 0 var(--space-2);
-            color: var(--color-border);
-        }
-
-        .connection-arrow svg {
-            width: 24px;
-            height: 24px;
-        }
-
-        /* Highlighted connection */
-        .connection-arrow.highlighted {
-            color: #E5A000;
-        }
-
-        /* Info Section */
-        .info-section {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: var(--space-8);
-            margin-bottom: var(--space-8);
-        }
-
-        @media (max-width: 900px) {
-            .info-section {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .info-content h2 {
-            font-size: var(--text-xl);
-            font-weight: 600;
-            color: var(--color-text);
-            margin-bottom: var(--space-4);
-        }
-
-        .info-content p {
-            color: var(--color-text-secondary);
-            line-height: 1.7;
-            margin-bottom: var(--space-4);
-        }
-
-        .info-list {
-            list-style: none;
-            margin: var(--space-6) 0;
-        }
-
-        .info-list li {
-            margin-bottom: var(--space-5);
-        }
-
-        .info-list-title {
-            font-weight: 600;
-            color: var(--color-text);
-            margin-bottom: var(--space-1);
-        }
-
-        .info-list-desc {
-            font-size: var(--text-sm);
-            color: var(--color-text-secondary);
-            line-height: 1.6;
-        }
-
-        .info-list-phases {
-            font-size: var(--text-sm);
-            color: var(--color-text-muted);
-            font-style: italic;
-        }
-
-        /* Example Path */
-        .example-path {
-            background: var(--color-surface);
-            border-radius: var(--radius-md);
-            padding: var(--space-3) var(--space-4);
-            margin-top: var(--space-4);
-        }
-
-        .example-path-label {
-            font-size: var(--text-xs);
-            font-weight: 600;
-            color: var(--color-text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: var(--space-1);
-        }
-
-        .example-path-code {
-            font-family: var(--font-mono);
-            font-size: var(--text-sm);
-            color: var(--color-primary);
-        }
-
-        /* Page Meta */
+        /* Page Meta Header */
         .page-meta {
             display: flex;
             justify-content: space-between;
@@ -190,11 +28,188 @@
             letter-spacing: 0.05em;
         }
 
-        .page-meta-date {
-            font-weight: 500;
+        /* Two-column layout matching PDF */
+        .content-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: var(--space-8);
+            align-items: start;
         }
 
-        /* Scrollbar styling for diagram */
+        @media (max-width: 1100px) {
+            .content-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Left info panel */
+        .info-panel h2 {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--space-4);
+        }
+
+        .info-panel > p {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--space-6);
+            font-size: var(--text-sm);
+        }
+
+        .info-list {
+            list-style: none;
+            margin: 0 0 var(--space-6) 0;
+            padding: 0;
+        }
+
+        .info-list li {
+            margin-bottom: var(--space-5);
+        }
+
+        .info-list-title {
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--space-1);
+            font-size: var(--text-sm);
+        }
+
+        .info-list-desc {
+            font-size: var(--text-xs);
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+
+        .info-list-phases {
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+            font-style: italic;
+        }
+
+        /* Example Path */
+        .example-path {
+            background: var(--color-surface);
+            border-radius: var(--radius-md);
+            padding: var(--space-3) var(--space-4);
+        }
+
+        .example-path-label {
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+            margin-bottom: var(--space-1);
+        }
+
+        .example-path-code {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            color: var(--color-primary);
+            word-break: break-all;
+        }
+
+        /* Folder Diagram */
+        .folder-diagram {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            overflow-x: auto;
+        }
+
+        .folder-diagram-inner {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-3);
+            min-width: 850px;
+        }
+
+        /* Folder Column */
+        .folder-column {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+            flex-shrink: 0;
+        }
+
+        /* Folder Item */
+        .folder-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-3);
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            font-size: var(--text-sm);
+            color: var(--color-text);
+            white-space: nowrap;
+        }
+
+        .folder-item.highlighted {
+            background: rgba(232, 151, 0, 0.12);
+            border: 2px solid #E89700;
+        }
+
+        [data-theme="dark"] .folder-item.highlighted {
+            background: rgba(232, 151, 0, 0.2);
+        }
+
+        .folder-item.highlighted .folder-name {
+            font-weight: 600;
+            color: #E89700;
+        }
+
+        .folder-icon {
+            width: 16px;
+            height: 16px;
+            color: var(--color-text-muted);
+            flex-shrink: 0;
+        }
+
+        .folder-item.highlighted .folder-icon {
+            color: #E89700;
+        }
+
+        /* Connection Arrow */
+        .connection-arrow {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            color: var(--color-border);
+            align-self: flex-start;
+            margin-top: 8px;
+        }
+
+        .connection-arrow svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .connection-arrow.highlighted {
+            color: #E89700;
+        }
+
+        /* Arrow positioning - align with highlighted row */
+        .arrow-1 { margin-top: 80px; }  /* Align with 02-ARC (3rd item) */
+        .arrow-2 { margin-top: 44px; }  /* Align with 02-BIM (2nd item) */
+        .arrow-3 { margin-top: 8px; }   /* Align with first BIM subfolder */
+
+        /* Related Topics */
+        .related-section {
+            margin-top: var(--space-10);
+            padding-top: var(--space-6);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .related-section h3 {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--space-4);
+        }
+
+        /* Scrollbar styling */
         .folder-diagram::-webkit-scrollbar {
             height: 8px;
         }
@@ -207,10 +222,6 @@
         .folder-diagram::-webkit-scrollbar-thumb {
             background: var(--color-border);
             border-radius: 4px;
-        }
-
-        .folder-diagram::-webkit-scrollbar-thumb:hover {
-            background: var(--color-text-muted);
         }
     </style>
 </head>
@@ -293,7 +304,7 @@
     <main class="main-content">
         <div class="page-meta">
             <span class="page-meta-section">INTRO</span>
-            <span class="page-meta-date">Design Guide Book - 001 / Rev: A</span>
+            <span>Design Guide Book - 001 / Rev: A</span>
         </div>
 
         <header class="page-header">
@@ -311,9 +322,10 @@
             </button>
         </div>
 
-        <!-- Info Section with Diagram -->
-        <div class="info-section">
-            <div class="info-content">
+        <!-- Main Content Layout -->
+        <div class="content-layout">
+            <!-- Left: Info Panel -->
+            <div class="info-panel">
                 <h2>Purpose</h2>
                 <p>A standardized folder structure ensures every team member can locate files quickly, maintains consistency across projects, and streamlines collaboration between disciplines.</p>
 
@@ -339,24 +351,20 @@
                 </div>
             </div>
 
-            <!-- Folder Diagram -->
+            <!-- Right: Folder Diagram -->
             <div class="folder-diagram">
                 <div class="folder-diagram-inner">
                     <!-- Column 1: Project Root -->
                     <div class="folder-column">
                         <div class="folder-item">
-                            <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                            </svg>
+                            <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
                             <span class="folder-name">"PROJECT NUMBER"</span>
                         </div>
                     </div>
 
-                    <!-- Arrow -->
-                    <div class="connection-arrow">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
+                    <!-- Arrow 1 -->
+                    <div class="connection-arrow arrow-1">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                     </div>
 
                     <!-- Column 2: Discipline Folders -->
@@ -382,11 +390,9 @@
                         <div class="folder-item"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">18-TEMP</span></div>
                     </div>
 
-                    <!-- Arrow -->
-                    <div class="connection-arrow highlighted">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
+                    <!-- Arrow 2 -->
+                    <div class="connection-arrow highlighted arrow-2">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                     </div>
 
                     <!-- Column 3: Design Phases -->
@@ -400,11 +406,9 @@
                         <div class="folder-item"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">07-IFC</span></div>
                     </div>
 
-                    <!-- Arrow -->
-                    <div class="connection-arrow highlighted">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
+                    <!-- Arrow 3 -->
+                    <div class="connection-arrow highlighted arrow-3">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                     </div>
 
                     <!-- Column 4: BIM Subfolders -->
@@ -426,7 +430,7 @@
         </div>
 
         <!-- Related Topics -->
-        <div class="related-topics">
+        <div class="related-section">
             <h3>Take it further</h3>
             <div class="related-links">
                 <a href="drawing-sheet-naming.html" class="related-link">
