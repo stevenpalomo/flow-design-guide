@@ -93,6 +93,7 @@
             url: getBasePath() + 'standards/bim-models-filenaming.html',
             keywords: ['bim', 'model', 'filenaming', 'naming', 'protocol', 'revit', 'navisworks', 'nwc', 'nwd', 'dwg', 'autocad', 'discipline', 'zone', 'consultant', 'project code'],
             description: 'BIM model file naming protocol and conventions'
+        },        {            title: 'BIM Definitions',            url: getBasePath() + 'standards/bim-definitions.html',            keywords: ['bim', 'definitions', 'terms', 'glossary', 'vocabulary', 'bep', 'bim execution plan', 'cde', 'common data environment', 'clash', 'coordination', 'federated model', 'ifc', 'lod', 'loi', 'loin', 'guid', 'cobie', 'cafm', 'gis'],            description: 'Standard BIM terminology and definitions'        },        {            title: 'BIM Abbreviations',            url: getBasePath() + 'standards/bim-abbreviations.html',            keywords: ['bim', 'abbreviations', 'acronyms', '2d', '3d', '4d', '5d', '6d', '7d', 'arc', 'str', 'mep', 'mec', 'ele', 'int', 'lsd', 'dwg', 'dwf', 'dxf', 'rvt', 'rfa', 'nwc', 'nwd', 'ifc', 'cad', 'cde', 'lod', 'loi', 'cd', 'pd', 'dd', 'td', 'fm'],            description: 'Standard abbreviations used in BIM documentation'
         }
     ];
 

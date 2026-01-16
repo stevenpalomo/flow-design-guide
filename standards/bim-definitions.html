@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIM Definitions | Flow Design Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        /* Page-specific styles */
+
+        /* Override max-width for this page */
+        .main-content {
+            max-width: none;
+        }
+
+        /* Page Meta Header */
+        .page-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+            margin-bottom: var(--space-6);
+            padding-bottom: var(--space-4);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .page-meta-section {
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Purpose section */
+        .purpose-text {
+            font-size: var(--text-base);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            max-width: 720px;
+            margin-bottom: var(--space-8);
+        }
+
+        /* Definitions Grid */
+        .definitions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--space-4);
+            margin-bottom: var(--space-8);
+        }
+
+        .definition-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            padding: var(--space-4);
+            transition: border-color var(--transition-fast);
+        }
+
+        .definition-card:hover {
+            border-color: var(--color-primary);
+        }
+
+        .definition-term {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: #E89700;
+            margin-bottom: var(--space-2);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .definition-text {
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Related Topics */
+        .related-section {
+            margin-top: var(--space-10);
+            padding-top: var(--space-6);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .related-section h3 {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--space-4);
+        }
+
+        .related-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-3);
+        }
+
+        .related-link {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-4);
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: var(--text-sm);
+            transition: all var(--transition-fast);
+        }
+
+        .related-link:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .related-link svg {
+            width: 16px;
+            height: 16px;
+            color: var(--color-text-muted);
+        }
+
+        .related-link:hover svg {
+            color: var(--color-primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="../index.html" class="logo">
+                <svg viewBox="0 0 120 40" class="logo-svg">
+                    <text x="0" y="30" font-family="Poppins, sans-serif" font-size="28" font-weight="700" fill="currentColor">FLOW</text>
+                </svg>
+            </a>
+            <span class="logo-subtitle">Design Guide</span>
+        </div>
+
+        <div class="search-container">
+            <input type="search" class="search-input" placeholder="Search..." aria-label="Search">
+            <div class="search-results"></div>
+        </div>
+
+        <nav class="nav-menu">
+            <div class="nav-section">
+                <h3 class="nav-section-title">Getting Started</h3>
+                <ul class="nav-list">
+                    <li><a href="../index.html" class="nav-link">Overview</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-section">
+                <h3 class="nav-section-title">Standards</h3>
+                <ul class="nav-list">
+                    <li><a href="drawing-sheet-naming.html" class="nav-link">Drawing Sheet Filenaming</a></li>
+                    <li><a href="bim-folder-structure.html" class="nav-link">BIM Folder Structure</a></li>
+                    <li><a href="bim-models-filenaming.html" class="nav-link">BIM Models Filenaming</a></li>
+                    <li><a href="bim-definitions.html" class="nav-link active">BIM Definitions</a></li>
+                    <li><a href="bim-abbreviations.html" class="nav-link">BIM Abbreviations</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-section">
+                <h3 class="nav-section-title">Templates</h3>
+                <ul class="nav-list">
+                    <li><span class="nav-link disabled">Coming Soon</span></li>
+                </ul>
+            </div>
+
+            <div class="nav-section">
+                <h3 class="nav-section-title">Resources</h3>
+                <ul class="nav-list">
+                    <li><span class="nav-link disabled">Coming Soon</span></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="theme-toggle" aria-label="Toggle dark mode">
+                <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-meta">
+            <span class="page-meta-section">INTRO</span>
+            <span>Design Guide Book - 001 / Rev: A</span>
+        </div>
+
+        <header class="page-header">
+            <h1 class="page-title">BIM Definitions</h1>
+        </header>
+
+        <div class="page-actions">
+            <button class="btn btn-primary" onclick="window.print()">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 9V2h12v7"></path>
+                    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                    <rect x="6" y="14" width="12" height="8"></rect>
+                </svg>
+                Export PDF
+            </button>
+        </div>
+
+        <!-- Purpose -->
+        <p class="purpose-text">A shared vocabulary ensures all project stakeholders communicate clearly. These definitions establish the standard terminology for Building Information Modeling across Flow projects.</p>
+
+        <!-- Definitions Grid -->
+        <div class="definitions-grid">
+            <div class="definition-card">
+                <div class="definition-term">2D Drawing</div>
+                <div class="definition-text">2D drawing containing a view of a model that is referenced to a drawing sheet.</div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-term">3D Model</div>
+                <div class="definition-text">A model with objects having three-dimensional properties.</div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-term">BIM Execution Plan (BEP)</div>
+                <div class="definition-text">A document used to capture all project specific standards, workflows and procedures.</div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-term">Building Information Modelling (BIM)</div>
+                <div class="definition-text">The process of designing, constructing and/or operating a building or infrastructure asset using electronic object-oriented information.</div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-term">BIM Author</div>
+                <div class="definition-text">A term used to define a person within a specific discipline responsible for authoring the project using the nominated BIM authoring software.</div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-term">BIM Coordinator</div>
+                <div class="definition-text">A term used to describe the nominated person within a specific discipline who is responsible for maintaining the BIM health and coordination of that discipline.</div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-term">BIM Manager</div>
+                <div class="definition-text">A term used to describe a person within a specific organization tasked with maintaining the health, vision implementation and maintenance of BIM within that organization.</div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-term">Clash</div>
+                <div class="definition-text">Spatial collision between two 3D objects or conflict of the projects determined.</div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-term">Clash Detection / Analysis</div>
+                <div class="definition-text">The process of identifying conflicts and issues between building systems by collaborating in 3D as part of the co-ordination process.</div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-term">Collaboration</div>
+                <div class="definition-text">The sharing and review of data between disciplines. Through BIM, this process can be smoother, quicker, and with each discipline adopting project standards, the workflow can be realized with less disruption.</div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-term">Common Data Environment (CDE)</div>
+                <div class="definition-text">Single source of information for any given project, used to collect, manage and disseminate all relevant approved project information for multi-disciplinary teams in a managed process.</div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-term">Data Scope</div>
+                <div class="definition-text">The agreed minimum set of attributes or property fields for the model elements in a model as identified in this document.</div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-term">Federated Model</div>
+                <div class="definition-text">Refers to the combined model which incorporates the relevant models from the project team at a specified phase of the project and is developed to the level of detail as defined in the BIM Execution Plan.</div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-term">FM / CAFM</div>
+                <div class="definition-text">Facilities Management is the production of information via the BIM, to be added into the Client/Contractors CAFM (Computer Aided Facilities Management) software.</div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-term">GUID</div>
+                <div class="definition-text">Globally Unique Identifier. It is automatically produced by the software and assigned to each element.</div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-term">CAD File/s</div>
+                <div class="definition-text">A collective name for files created utilising CAD software; CAD model, CAD container, CAD drawing file/s.</div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-term">COBie</div>
+                <div class="definition-text">Construction Operations Building Information Exchange. International standard that relates to the exchange of building information. It is most used in the product data handover from the construction team to the operations team.</div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-term">Consultant(s) or Contractor(s)</div>
+                <div class="definition-text">Organisations contracted to the Employer/Appointing Party to deliver project contract/appointment requirements required to satisfy project stage deliverables.</div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-term">Deliverable</div>
+                <div class="definition-text">A document or asset required, in a format stated in the EIR or contract/appointment documentation to satisfy the completion of the requirements of the Employer's/Appointing Party's project.</div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-term">Discipline</div>
+                <div class="definition-text">A term used to identify a group of individuals that are specialists in their field of work. For example, Architects, Interior Designers, Mechanical Engineers, Structural Engineers, etc.</div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-term">Document</div>
+                <div class="definition-text">The common name given to a file that is not recognised as CAD file format. Also defined as an 'Information Container'.</div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-term">Drawing</div>
+                <div class="definition-text">A CAD or PDF rendition file containing multiple spaces where referenced 2D CAD model file(s) are required to produce a project drawing deliverable.</div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-term">Geographic Information System (GIS)</div>
+                <div class="definition-text">A geographic information system is a conceptualized framework that provides the ability to capture and analyze spatial and geographic data.</div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-term">Industry Foundation Classes (IFC)</div>
+                <div class="definition-text">Data model intended to describe architectural, building and construction industry data. It is a platform neutral, open file format specification that is not controlled by a single vendor or group of vendors.</div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-term">Level of Detail (LOD)</div>
+                <div class="definition-text">The description of geometrical content of models.</div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-term">Level of Information (LOI)</div>
+                <div class="definition-text">The description of non-geometrical content (attributes or information) of models.</div>
+            </div>
+
+            <div class="definition-card">
+                <div class="definition-term">LOIN Matrix</div>
+                <div class="definition-text">The Level of Information Need Matrix in BIM defines the information required at each project phase (Design, Construction, Operation) and specifies the level of detail needed for different stakeholders.</div>
+            </div>
+        </div>
+
+        <!-- Related Topics -->
+        <div class="related-section">
+            <h3>Related Standards</h3>
+            <div class="related-links">
+                <a href="bim-abbreviations.html" class="related-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 7V4h16v3"></path>
+                        <path d="M9 20h6"></path>
+                        <path d="M12 4v16"></path>
+                    </svg>
+                    BIM Abbreviations
+                </a>
+                <a href="bim-models-filenaming.html" class="related-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                    </svg>
+                    BIM Models Filenaming
+                </a>
+                <a href="bim-folder-structure.html" class="related-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    BIM Folder Structure
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/nav.js"></script>
+    <script src="../js/auth.js"></script>
+</body>
+</html>

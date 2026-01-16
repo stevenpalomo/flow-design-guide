@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drawing Sheet Filenaming Protocol | Flow Design Guide</title>
+    <title>BIM Abbreviations | Flow Design Guide</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -40,72 +40,6 @@
             line-height: 1.7;
             max-width: 720px;
             margin-bottom: var(--space-8);
-        }
-
-        /* Filename Pattern Display */
-        .filename-pattern {
-            background: var(--color-bg-secondary);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-lg);
-            padding: var(--space-8);
-            margin-bottom: var(--space-8);
-            overflow-x: auto;
-        }
-
-        .pattern-numbers {
-            display: flex;
-            gap: 0;
-            justify-content: center;
-            margin-bottom: var(--space-4);
-            font-size: var(--text-sm);
-            color: var(--color-text-muted);
-        }
-
-        .pattern-numbers span {
-            width: 80px;
-            text-align: center;
-        }
-
-        .pattern-display {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-mono);
-            font-size: clamp(1.25rem, 3vw, 2rem);
-            font-weight: 700;
-            color: #E89700;
-            gap: 0;
-            flex-wrap: nowrap;
-        }
-
-        .pattern-segment {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .pattern-segment .value {
-            padding: 0 var(--space-1);
-        }
-
-        .pattern-separator {
-            color: #E89700;
-            padding: 0 2px;
-        }
-
-        .pattern-labels {
-            display: flex;
-            gap: 0;
-            justify-content: center;
-            margin-top: var(--space-4);
-            font-size: var(--text-xs);
-            color: var(--color-text-secondary);
-        }
-
-        .pattern-labels span {
-            width: 80px;
-            text-align: center;
-            padding: 0 var(--space-1);
         }
 
         /* Code Tables Grid */
@@ -156,52 +90,12 @@
             font-family: var(--font-mono);
             font-weight: 600;
             color: var(--color-primary);
-            min-width: 36px;
+            min-width: 48px;
             flex-shrink: 0;
         }
 
         .code-desc {
             color: var(--color-text-secondary);
-        }
-
-        .code-note {
-            font-size: var(--text-xs);
-            color: var(--color-text-muted);
-            font-style: italic;
-            margin-top: var(--space-2);
-            padding-top: var(--space-2);
-            border-top: 1px dashed var(--color-border);
-        }
-
-        /* How to Read Section */
-        .how-to-read {
-            background: var(--color-bg-secondary);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-lg);
-            padding: var(--space-6);
-            margin-bottom: var(--space-8);
-        }
-
-        .how-to-read h3 {
-            font-size: var(--text-base);
-            font-weight: 600;
-            color: var(--color-text);
-            margin-bottom: var(--space-4);
-        }
-
-        .example-filename {
-            font-family: var(--font-mono);
-            font-size: var(--text-lg);
-            font-weight: 600;
-            color: #E89700;
-            margin-bottom: var(--space-3);
-        }
-
-        .example-explanation {
-            font-size: var(--text-sm);
-            color: var(--color-text-secondary);
-            font-style: italic;
-            line-height: 1.6;
         }
 
         /* Related Topics */
@@ -291,11 +185,11 @@
             <div class="nav-section">
                 <h3 class="nav-section-title">Standards</h3>
                 <ul class="nav-list">
-                    <li><a href="drawing-sheet-naming.html" class="nav-link active">Drawing Sheet Filenaming</a></li>
+                    <li><a href="drawing-sheet-naming.html" class="nav-link">Drawing Sheet Filenaming</a></li>
                     <li><a href="bim-folder-structure.html" class="nav-link">BIM Folder Structure</a></li>
                     <li><a href="bim-models-filenaming.html" class="nav-link">BIM Models Filenaming</a></li>
                     <li><a href="bim-definitions.html" class="nav-link">BIM Definitions</a></li>
-                    <li><a href="bim-abbreviations.html" class="nav-link">BIM Abbreviations</a></li>
+                    <li><a href="bim-abbreviations.html" class="nav-link active">BIM Abbreviations</a></li>
                 </ul>
             </div>
 
@@ -342,7 +236,7 @@
         </div>
 
         <header class="page-header">
-            <h1 class="page-title">Drawing Sheet Filenaming Protocol</h1>
+            <h1 class="page-title">BIM Abbreviations</h1>
         </header>
 
         <div class="page-actions">
@@ -356,345 +250,311 @@
             </button>
         </div>
 
-        <!-- Filename Pattern -->
-        <div class="filename-pattern">
-            <div class="pattern-numbers">
-                <span>(1)</span>
-                <span>(2)</span>
-                <span>(3)</span>
-                <span>(4)</span>
-                <span>(5)</span>
-                <span>(6)</span>
-                <span>(7)</span>
-                <span>(8)</span>
-                <span>(9)</span>
-            </div>
-            <div class="pattern-display">
-                <span class="pattern-segment"><span class="value">FLW</span></span>
-                <span class="pattern-separator">-</span>
-                <span class="pattern-segment"><span class="value">XXX</span></span>
-                <span class="pattern-separator">-</span>
-                <span class="pattern-segment"><span class="value">DWG</span></span>
-                <span class="pattern-separator">-</span>
-                <span class="pattern-segment"><span class="value">OA</span></span>
-                <span class="pattern-separator">-</span>
-                <span class="pattern-segment"><span class="value">PD</span></span>
-                <span class="pattern-separator">-</span>
-                <span class="pattern-segment"><span class="value">AR</span></span>
-                <span class="pattern-separator">-</span>
-                <span class="pattern-segment"><span class="value">101</span></span>
-                <span class="pattern-separator">-</span>
-                <span class="pattern-segment"><span class="value">LEVEL 00</span></span>
-                <span class="pattern-separator">-</span>
-                <span class="pattern-segment"><span class="value">01</span></span>
-            </div>
-            <div class="pattern-labels">
-                <span>Lead Consultant</span>
-                <span>Project Code</span>
-                <span>Document Type</span>
-                <span>Zone</span>
-                <span>Sub-zone</span>
-                <span>Discipline</span>
-                <span>Sheet Series</span>
-                <span>Descriptor</span>
-                <span>Revision No.</span>
-            </div>
-        </div>
+        <!-- Purpose -->
+        <p class="purpose-text">Standard abbreviations ensure consistency across all project documentation. Use these acronyms in file names, drawing sheets, and project communications.</p>
 
         <!-- Code Tables -->
         <div class="codes-grid">
-            <!-- Lead Consultant -->
+            <!-- BIM Dimensions -->
             <div class="code-table">
                 <div class="code-table-header">
-                    <h3>Lead Consultant</h3>
+                    <h3>BIM Dimensions</h3>
                 </div>
                 <div class="code-table-body">
                     <div class="code-row">
-                        <span class="code-value">FLW</span>
-                        <span class="code-desc">Flow Design Team</span>
+                        <span class="code-value">2D</span>
+                        <span class="code-desc">Two-Dimensional</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">3D</span>
+                        <span class="code-desc">Three-Dimensional</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">4D</span>
+                        <span class="code-desc">Time Dimension</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">5D</span>
+                        <span class="code-desc">Cost Dimension</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">6D</span>
+                        <span class="code-desc">Operational / CAFM</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">7D</span>
+                        <span class="code-desc">Sustainability Dimension</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Project Code -->
+            <!-- Disciplines -->
             <div class="code-table">
                 <div class="code-table-header">
-                    <h3>Project Code</h3>
+                    <h3>Disciplines</h3>
                 </div>
                 <div class="code-table-body">
                     <div class="code-row">
-                        <span class="code-value">OLA</span>
-                        <span class="code-desc">Olaya</span>
+                        <span class="code-value">ARC</span>
+                        <span class="code-desc">Architecture</span>
                     </div>
                     <div class="code-row">
-                        <span class="code-value">GRV</span>
-                        <span class="code-desc">Grand View</span>
+                        <span class="code-value">STR</span>
+                        <span class="code-desc">Structure</span>
                     </div>
                     <div class="code-row">
-                        <span class="code-value">WYN</span>
-                        <span class="code-desc">Wynwood</span>
+                        <span class="code-value">MEP</span>
+                        <span class="code-desc">Mechanical, Electrical, Plumbing</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">MEC</span>
+                        <span class="code-desc">Mechanical</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">ELE</span>
+                        <span class="code-desc">Electrical</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">INT</span>
+                        <span class="code-desc">Interior</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">LSD</span>
+                        <span class="code-desc">Landscape</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Document Type -->
+            <!-- Project Phases -->
             <div class="code-table">
                 <div class="code-table-header">
-                    <h3>Document Type</h3>
+                    <h3>Project Phases</h3>
                 </div>
                 <div class="code-table-body">
+                    <div class="code-row">
+                        <span class="code-value">CD</span>
+                        <span class="code-desc">Concept Design</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">PD</span>
+                        <span class="code-desc">Preliminary Design</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">DD</span>
+                        <span class="code-desc">Detailed Design</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">TD</span>
+                        <span class="code-desc">Tender Design</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">IFC</span>
+                        <span class="code-desc">Issued For Construction</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">FM</span>
+                        <span class="code-desc">Facilities Management</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BIM Terms -->
+            <div class="code-table">
+                <div class="code-table-header">
+                    <h3>BIM Terms</h3>
+                </div>
+                <div class="code-table-body">
+                    <div class="code-row">
+                        <span class="code-value">BIM</span>
+                        <span class="code-desc">Building Information Modelling</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">BEP</span>
+                        <span class="code-desc">BIM Execution Plan</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">BPM</span>
+                        <span class="code-desc">BIM Progress Meeting</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">CDE</span>
+                        <span class="code-desc">Common Data Environment</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">EIR</span>
+                        <span class="code-desc">Exchange Information Requirements</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">LOD</span>
+                        <span class="code-desc">Level of Definition</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">LOI</span>
+                        <span class="code-desc">Level of Information</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">LOIN</span>
+                        <span class="code-desc">Level of Information Needs</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Software & Platforms -->
+            <div class="code-table">
+                <div class="code-table-header">
+                    <h3>Software & Platforms</h3>
+                </div>
+                <div class="code-table-body">
+                    <div class="code-row">
+                        <span class="code-value">ACC</span>
+                        <span class="code-desc">Autodesk Construction Cloud</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">CAD</span>
+                        <span class="code-desc">Computer Aided Design</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">CAFM</span>
+                        <span class="code-desc">Computer Aided Facilities Management</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">GIS</span>
+                        <span class="code-desc">Geographic Information System</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- File Formats -->
+            <div class="code-table">
+                <div class="code-table-header">
+                    <h3>File Formats</h3>
+                </div>
+                <div class="code-table-body">
+                    <div class="code-row">
+                        <span class="code-value">DWF</span>
+                        <span class="code-desc">Design Web Format</span>
+                    </div>
                     <div class="code-row">
                         <span class="code-value">DWG</span>
-                        <span class="code-desc">Drawing</span>
+                        <span class="code-desc">AutoCAD Format</span>
                     </div>
                     <div class="code-row">
-                        <span class="code-value">SPC</span>
-                        <span class="code-desc">Specification</span>
+                        <span class="code-value">DXF</span>
+                        <span class="code-desc">CAD Data Exchange Format</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">IFC</span>
+                        <span class="code-desc">Industry Foundation Classes</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">NWC</span>
+                        <span class="code-desc">Navisworks Cache File</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">NWD</span>
+                        <span class="code-desc">Navisworks Document</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">NWF</span>
+                        <span class="code-desc">Navisworks File Set</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">RFA</span>
+                        <span class="code-desc">Revit Family</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">RTE</span>
+                        <span class="code-desc">Revit Template</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">RVT</span>
+                        <span class="code-desc">Revit Project</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Document Types -->
+            <div class="code-table">
+                <div class="code-table-header">
+                    <h3>Document Types</h3>
+                </div>
+                <div class="code-table-body">
+                    <div class="code-row">
+                        <span class="code-value">ORG</span>
+                        <span class="code-desc">Organization Chart</span>
                     </div>
                     <div class="code-row">
                         <span class="code-value">PPT</span>
-                        <span class="code-desc">Presentation</span>
+                        <span class="code-desc">Power Point Presentation</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">RPT</span>
+                        <span class="code-desc">Report</span>
                     </div>
                     <div class="code-row">
                         <span class="code-value">SCH</span>
                         <span class="code-desc">Schedule</span>
                     </div>
                     <div class="code-row">
-                        <span class="code-value">RPT</span>
-                        <span class="code-desc">Report</span>
+                        <span class="code-value">SPEC</span>
+                        <span class="code-desc">Specifications</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Zone -->
+            <!-- Technical Terms -->
             <div class="code-table">
                 <div class="code-table-header">
-                    <h3>Zone</h3>
+                    <h3>Technical Terms</h3>
                 </div>
                 <div class="code-table-body">
                     <div class="code-row">
-                        <span class="code-value">SW</span>
-                        <span class="code-desc">Site Wide</span>
+                        <span class="code-value">AEC</span>
+                        <span class="code-desc">Architecture, Engineering & Construction</span>
                     </div>
                     <div class="code-row">
-                        <span class="code-value">OA</span>
-                        <span class="code-desc">Overall</span>
+                        <span class="code-value">FFL</span>
+                        <span class="code-desc">Finish Floor Level</span>
                     </div>
                     <div class="code-row">
-                        <span class="code-value">BA</span>
-                        <span class="code-desc">Building A</span>
+                        <span class="code-value">SSL</span>
+                        <span class="code-desc">Structural Slab Level</span>
                     </div>
                     <div class="code-row">
-                        <span class="code-value">BB</span>
-                        <span class="code-desc">Building B</span>
+                        <span class="code-value">QA/QC</span>
+                        <span class="code-desc">Quality Assurance / Quality Control</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">REV</span>
+                        <span class="code-desc">Revision</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">WIP</span>
+                        <span class="code-desc">Work In Progress</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">S&M</span>
+                        <span class="code-desc">Sales & Marketing</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">TOK</span>
+                        <span class="code-desc">Take Over Kit</span>
                     </div>
                 </div>
             </div>
-
-            <!-- Sub-Zone -->
-            <div class="code-table">
-                <div class="code-table-header">
-                    <h3>Sub-Zone</h3>
-                </div>
-                <div class="code-table-body">
-                    <div class="code-row">
-                        <span class="code-value">BS</span>
-                        <span class="code-desc">Basement</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">GR</span>
-                        <span class="code-desc">Ground</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">PD</span>
-                        <span class="code-desc">Podium</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">AS</span>
-                        <span class="code-desc">Amenities & Services Floors</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">RF</span>
-                        <span class="code-desc">Roof</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">CS</span>
-                        <span class="code-desc">Core, Stair & Arc-Structure</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">FC</span>
-                        <span class="code-desc">Facade</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">US</span>
-                        <span class="code-desc">Studio</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">U1</span>
-                        <span class="code-desc">1 Bedroom (1BR)</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">U2</span>
-                        <span class="code-desc">2 Bedroom (2BR)</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">U3</span>
-                        <span class="code-desc">3 Bedroom (3BR)</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">U4</span>
-                        <span class="code-desc">4 Bedroom (4BR)</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">RE</span>
-                        <span class="code-desc">Residential Type</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Discipline -->
-            <div class="code-table">
-                <div class="code-table-header">
-                    <h3>Discipline</h3>
-                </div>
-                <div class="code-table-body">
-                    <div class="code-row">
-                        <span class="code-value">GN</span>
-                        <span class="code-desc">General</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">ID</span>
-                        <span class="code-desc">Interior Design</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">AR</span>
-                        <span class="code-desc">Architecture</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">LD</span>
-                        <span class="code-desc">Landscape</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">ST</span>
-                        <span class="code-desc">Structure</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">ME</span>
-                        <span class="code-desc">Mechanical</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">PL</span>
-                        <span class="code-desc">Plumbing</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">LV</span>
-                        <span class="code-desc">Low Voltage</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">EL</span>
-                        <span class="code-desc">Electrical</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Sheet Series -->
-            <div class="code-table">
-                <div class="code-table-header">
-                    <h3>Sheet Series</h3>
-                </div>
-                <div class="code-table-body">
-                    <div class="code-row">
-                        <span class="code-value">000</span>
-                        <span class="code-desc">General Sheets</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">090</span>
-                        <span class="code-desc">SOP & Basement Plans</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">100</span>
-                        <span class="code-desc">Floor Plans</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">125</span>
-                        <span class="code-desc">Reflected Ceiling Plans</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">150</span>
-                        <span class="code-desc">Flooring Plans</span>
-                    </div>
-                    <p class="code-note">Refer to Pg. 6 "Sheet Series"</p>
-                </div>
-            </div>
-
-            <!-- Descriptor -->
-            <div class="code-table">
-                <div class="code-table-header">
-                    <h3>Descriptor</h3>
-                </div>
-                <div class="code-table-body">
-                    <div class="code-row">
-                        <span class="code-value">LEVEL 00</span>
-                        <span class="code-desc"></span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">LEVEL 15</span>
-                        <span class="code-desc"></span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">NORTH ELEVATION</span>
-                        <span class="code-desc"></span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">WALL SECTION 01</span>
-                        <span class="code-desc"></span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">UNIT TYPE A</span>
-                        <span class="code-desc"></span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Revision No. -->
-            <div class="code-table">
-                <div class="code-table-header">
-                    <h3>Revision No.</h3>
-                </div>
-                <div class="code-table-body">
-                    <div class="code-row">
-                        <span class="code-value">00</span>
-                        <span class="code-desc">Initial Issue</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">01</span>
-                        <span class="code-desc">First Revision</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">02</span>
-                        <span class="code-desc">Second Revision</span>
-                    </div>
-                    <p class="code-note">Increment for each issued change. Internal drafts use 00.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- How to Read -->
-        <div class="how-to-read">
-            <h3>How to Read</h3>
-            <div class="example-filename">FLW-OLA-DWG-TA-AR-201-NORTH ELEV-02</div>
-            <p class="example-explanation">"Architectural elevation on Sheet #201, showing the north elevation of Tower A at Flow Olaya, second revision."</p>
         </div>
 
         <!-- Related Topics -->
         <div class="related-section">
             <h3>Related Standards</h3>
             <div class="related-links">
-                <a href="bim-folder-structure.html" class="related-link">
+                <a href="bim-definitions.html" class="related-link">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
                     </svg>
-                    BIM Folder Structure
+                    BIM Definitions
                 </a>
                 <a href="bim-models-filenaming.html" class="related-link">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -702,6 +562,13 @@
                         <polyline points="14 2 14 8 20 8"></polyline>
                     </svg>
                     BIM Models Filenaming
+                </a>
+                <a href="drawing-sheet-naming.html" class="related-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                    </svg>
+                    Drawing Sheet Filenaming
                 </a>
             </div>
         </div>
