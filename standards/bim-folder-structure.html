@@ -11,6 +11,11 @@
     <style>
         /* Page-specific styles for folder structure visualization */
 
+        /* Override max-width for this page to allow full expansion */
+        .main-content {
+            max-width: none;
+        }
+
         /* Page Meta Header */
         .page-meta {
             display: flex;
@@ -32,11 +37,11 @@
         .content-layout {
             display: grid;
             grid-template-columns: 280px 1fr;
-            gap: var(--space-8);
+            gap: var(--space-6);
             align-items: start;
         }
 
-        @media (max-width: 1100px) {
+        @media (max-width: 1200px) {
             .content-layout {
                 grid-template-columns: 1fr;
             }
@@ -113,13 +118,14 @@
             border-radius: var(--radius-lg);
             padding: var(--space-6);
             overflow-x: auto;
+            min-width: 0; /* Allow flex shrinking */
         }
 
         .folder-diagram-inner {
             display: flex;
             align-items: flex-start;
-            gap: var(--space-3);
-            min-width: 850px;
+            gap: var(--space-4);
+            min-width: max-content; /* Ensure all content fits */
         }
 
         /* Folder Column */
