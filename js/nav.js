@@ -87,6 +87,12 @@
             url: getBasePath() + 'standards/bim-folder-structure.html',
             keywords: ['bim', 'folder', 'structure', 'directory', 'organization', 'revit', 'model', 'project', 'archive', 'discipline', 'coordination', 'linked', 'export', 'wip'],
             description: 'Standardized folder structure for BIM projects'
+        },
+        {
+            title: 'BIM Models Filenaming',
+            url: getBasePath() + 'standards/bim-models-filenaming.html',
+            keywords: ['bim', 'model', 'filenaming', 'naming', 'protocol', 'revit', 'navisworks', 'nwc', 'nwd', 'dwg', 'autocad', 'discipline', 'zone', 'consultant', 'project code'],
+            description: 'BIM model file naming protocol and conventions'
         }
     ];
 

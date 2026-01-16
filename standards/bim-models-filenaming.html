@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIM Models Filenaming Protocol | Flow Design Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        /* Page-specific styles */
+
+        /* Override max-width for this page */
+        .main-content {
+            max-width: none;
+        }
+
+        /* Page Meta Header */
+        .page-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+            margin-bottom: var(--space-6);
+            padding-bottom: var(--space-4);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .page-meta-section {
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Purpose section */
+        .purpose-text {
+            font-size: var(--text-base);
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            max-width: 720px;
+            margin-bottom: var(--space-8);
+        }
+
+        /* Filename Pattern Display */
+        .filename-pattern {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-8);
+            margin-bottom: var(--space-8);
+            overflow-x: auto;
+        }
+
+        .pattern-numbers {
+            display: flex;
+            gap: 0;
+            justify-content: center;
+            margin-bottom: var(--space-4);
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+        }
+
+        .pattern-numbers span {
+            width: 80px;
+            text-align: center;
+        }
+
+        .pattern-display {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-mono);
+            font-size: clamp(1.25rem, 3vw, 2rem);
+            font-weight: 700;
+            color: #E89700;
+            gap: 0;
+            flex-wrap: nowrap;
+        }
+
+        .pattern-segment {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .pattern-segment .value {
+            padding: 0 var(--space-1);
+        }
+
+        .pattern-separator {
+            color: #E89700;
+            padding: 0 2px;
+        }
+
+        .pattern-labels {
+            display: flex;
+            gap: 0;
+            justify-content: center;
+            margin-top: var(--space-4);
+            font-size: var(--text-xs);
+            color: var(--color-text-secondary);
+        }
+
+        .pattern-labels span {
+            width: 80px;
+            text-align: center;
+            padding: 0 var(--space-1);
+        }
+
+        /* Code Tables Grid */
+        .codes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-6);
+            margin-bottom: var(--space-8);
+        }
+
+        .code-table {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+
+        .code-table-header {
+            background: var(--color-bg-secondary);
+            padding: var(--space-3) var(--space-4);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .code-table-header h3 {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--color-text);
+            margin: 0;
+        }
+
+        .code-table-body {
+            padding: var(--space-3) var(--space-4);
+        }
+
+        .code-row {
+            display: flex;
+            gap: var(--space-3);
+            padding: var(--space-2) 0;
+            font-size: var(--text-sm);
+            border-bottom: 1px solid var(--color-border-subtle);
+        }
+
+        .code-row:last-child {
+            border-bottom: none;
+        }
+
+        .code-value {
+            font-family: var(--font-mono);
+            font-weight: 600;
+            color: var(--color-primary);
+            min-width: 36px;
+            flex-shrink: 0;
+        }
+
+        .code-desc {
+            color: var(--color-text-secondary);
+        }
+
+        /* How to Read Section */
+        .how-to-read {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-6);
+            margin-bottom: var(--space-8);
+        }
+
+        .how-to-read h3 {
+            font-size: var(--text-base);
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--space-4);
+        }
+
+        .example-filename {
+            font-family: var(--font-mono);
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: #E89700;
+            margin-bottom: var(--space-3);
+        }
+
+        .example-explanation {
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        /* Related Topics */
+        .related-section {
+            margin-top: var(--space-10);
+            padding-top: var(--space-6);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .related-section h3 {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: var(--space-4);
+        }
+
+        .related-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-3);
+        }
+
+        .related-link {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-4);
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: var(--text-sm);
+            transition: all var(--transition-fast);
+        }
+
+        .related-link:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .related-link svg {
+            width: 16px;
+            height: 16px;
+            color: var(--color-text-muted);
+        }
+
+        .related-link:hover svg {
+            color: var(--color-primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="../index.html" class="logo">
+                <svg viewBox="0 0 120 40" class="logo-svg">
+                    <text x="0" y="30" font-family="Poppins, sans-serif" font-size="28" font-weight="700" fill="currentColor">FLOW</text>
+                </svg>
+            </a>
+            <span class="logo-subtitle">Design Guide</span>
+        </div>
+
+        <div class="search-container">
+            <input type="search" class="search-input" placeholder="Search..." aria-label="Search">
+            <div class="search-results"></div>
+        </div>
+
+        <nav class="nav-menu">
+            <div class="nav-section">
+                <h3 class="nav-section-title">Getting Started</h3>
+                <ul class="nav-list">
+                    <li><a href="../index.html" class="nav-link">Overview</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-section">
+                <h3 class="nav-section-title">Standards</h3>
+                <ul class="nav-list">
+                    <li><a href="drawing-sheet-naming.html" class="nav-link">Drawing Sheet Naming</a></li>
+                    <li><a href="bim-folder-structure.html" class="nav-link">BIM Folder Structure</a></li>
+                    <li><a href="bim-models-filenaming.html" class="nav-link active">BIM Models Filenaming</a></li>
+                </ul>
+            </div>
+
+            <div class="nav-section">
+                <h3 class="nav-section-title">Templates</h3>
+                <ul class="nav-list">
+                    <li><span class="nav-link disabled">Coming Soon</span></li>
+                </ul>
+            </div>
+
+            <div class="nav-section">
+                <h3 class="nav-section-title">Resources</h3>
+                <ul class="nav-list">
+                    <li><span class="nav-link disabled">Coming Soon</span></li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="theme-toggle" aria-label="Toggle dark mode">
+                <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="page-meta">
+            <span class="page-meta-section">INTRO</span>
+            <span>Design Guide Book - 001 / Rev: A</span>
+        </div>
+
+        <header class="page-header">
+            <h1 class="page-title">BIM Models Filenaming Protocol</h1>
+        </header>
+
+        <div class="page-actions">
+            <button class="btn btn-primary" onclick="window.print()">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 9V2h12v7"></path>
+                    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                    <rect x="6" y="14" width="12" height="8"></rect>
+                </svg>
+                Export PDF
+            </button>
+        </div>
+
+        <!-- Purpose -->
+        <p class="purpose-text">A consistent BIM naming protocol drives scalability by turning complex data into a structured, automated system. It eliminates ambiguity, ensuring teams can instantly locate files and streamline coordination as projects grow.</p>
+
+        <!-- Filename Pattern -->
+        <div class="filename-pattern">
+            <div class="pattern-numbers">
+                <span>(1)</span>
+                <span>(2)</span>
+                <span>(3)</span>
+                <span>(4)</span>
+                <span>(5)</span>
+                <span>(6)</span>
+                <span>(7)</span>
+            </div>
+            <div class="pattern-display">
+                <span class="pattern-segment"><span class="value">FLW</span></span>
+                <span class="pattern-separator">-</span>
+                <span class="pattern-segment"><span class="value">XXX</span></span>
+                <span class="pattern-separator">-</span>
+                <span class="pattern-segment"><span class="value">AR</span></span>
+                <span class="pattern-separator">-</span>
+                <span class="pattern-segment"><span class="value">OA</span></span>
+                <span class="pattern-separator">-</span>
+                <span class="pattern-segment"><span class="value">CS</span></span>
+                <span class="pattern-separator">-</span>
+                <span class="pattern-segment"><span class="value">RVT</span></span>
+                <span class="pattern-separator">-</span>
+                <span class="pattern-segment"><span class="value">0001</span></span>
+            </div>
+            <div class="pattern-labels">
+                <span>Lead Consultant</span>
+                <span>Project Code</span>
+                <span>Discipline</span>
+                <span>Zone</span>
+                <span>Sub-zone</span>
+                <span>Document Type</span>
+                <span>Model Number</span>
+            </div>
+        </div>
+
+        <!-- Code Tables -->
+        <div class="codes-grid">
+            <!-- Lead Consultant -->
+            <div class="code-table">
+                <div class="code-table-header">
+                    <h3>Lead Consultant</h3>
+                </div>
+                <div class="code-table-body">
+                    <div class="code-row">
+                        <span class="code-value">FLW</span>
+                        <span class="code-desc">Flow Design Team</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Code -->
+            <div class="code-table">
+                <div class="code-table-header">
+                    <h3>Project Code</h3>
+                </div>
+                <div class="code-table-body">
+                    <div class="code-row">
+                        <span class="code-value">OLA</span>
+                        <span class="code-desc">Olaya</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">GRV</span>
+                        <span class="code-desc">Grand View</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">WYN</span>
+                        <span class="code-desc">Wynwood</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Discipline -->
+            <div class="code-table">
+                <div class="code-table-header">
+                    <h3>Discipline</h3>
+                </div>
+                <div class="code-table-body">
+                    <div class="code-row">
+                        <span class="code-value">GN</span>
+                        <span class="code-desc">General</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">ID</span>
+                        <span class="code-desc">Interior Design</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">AR</span>
+                        <span class="code-desc">Architecture</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">LD</span>
+                        <span class="code-desc">Landscape</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">ST</span>
+                        <span class="code-desc">Structure</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">ME</span>
+                        <span class="code-desc">Mechanical</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">PL</span>
+                        <span class="code-desc">Plumbing</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">LV</span>
+                        <span class="code-desc">Low Voltage</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">EL</span>
+                        <span class="code-desc">Electrical</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Zone -->
+            <div class="code-table">
+                <div class="code-table-header">
+                    <h3>Zone</h3>
+                </div>
+                <div class="code-table-body">
+                    <div class="code-row">
+                        <span class="code-value">SW</span>
+                        <span class="code-desc">Site Wide</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">OA</span>
+                        <span class="code-desc">Overall</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">BA</span>
+                        <span class="code-desc">Building A</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">BB</span>
+                        <span class="code-desc">Building B</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">FM</span>
+                        <span class="code-desc">Federated Model (For NWD)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sub-Zone -->
+            <div class="code-table">
+                <div class="code-table-header">
+                    <h3>Sub-Zone</h3>
+                </div>
+                <div class="code-table-body">
+                    <div class="code-row">
+                        <span class="code-value">BS</span>
+                        <span class="code-desc">Basement</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">GR</span>
+                        <span class="code-desc">Ground</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">PD</span>
+                        <span class="code-desc">Podium</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">AS</span>
+                        <span class="code-desc">Amenities & Services Floors</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">RF</span>
+                        <span class="code-desc">Roof</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">CS</span>
+                        <span class="code-desc">Core, Stair & Arc-Structure</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">FC</span>
+                        <span class="code-desc">Facade</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">US</span>
+                        <span class="code-desc">Studio</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">U1</span>
+                        <span class="code-desc">1 Bedroom (1BR)</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">U2</span>
+                        <span class="code-desc">2 Bedroom (2BR)</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">U3</span>
+                        <span class="code-desc">3 Bedroom (3BR)</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">U4</span>
+                        <span class="code-desc">4 Bedroom (4BR)</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">RE</span>
+                        <span class="code-desc">Residential Type</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Document Type -->
+            <div class="code-table">
+                <div class="code-table-header">
+                    <h3>Document Type</h3>
+                </div>
+                <div class="code-table-body">
+                    <div class="code-row">
+                        <span class="code-value">RVT</span>
+                        <span class="code-desc">Revit Models</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">NWC</span>
+                        <span class="code-desc">Navisworks NWC</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">NWD</span>
+                        <span class="code-desc">Navisworks NWD</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">DWG</span>
+                        <span class="code-desc">AutoCAD</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">DOC</span>
+                        <span class="code-desc">Document</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">RPT</span>
+                        <span class="code-desc">Report</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Model Number -->
+            <div class="code-table">
+                <div class="code-table-header">
+                    <h3>Model Number</h3>
+                </div>
+                <div class="code-table-body">
+                    <div class="code-row">
+                        <span class="code-value">0001</span>
+                        <span class="code-desc">Version 1</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">0002</span>
+                        <span class="code-desc">Version 2</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- How to Read -->
+        <div class="how-to-read">
+            <h3>How to Read</h3>
+            <div class="example-filename">FLW-OLA-AR-OA-GR-RVT-0002</div>
+            <p class="example-explanation">"Architectural Revit model, showing overall site, showing only ground floor, second revision."</p>
+        </div>
+
+        <!-- Related Topics -->
+        <div class="related-section">
+            <h3>Related Standards</h3>
+            <div class="related-links">
+                <a href="drawing-sheet-naming.html" class="related-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                    </svg>
+                    Drawing Sheet Naming
+                </a>
+                <a href="bim-folder-structure.html" class="related-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    BIM Folder Structure
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/nav.js"></script>
+    <script src="../js/auth.js"></script>
+</body>
+</html>
