@@ -77,10 +77,10 @@
             description: 'Welcome to the Flow Design Guide'
         },
         {
-            title: 'Drawing Sheet Naming',
+            title: 'Drawing Sheet Filenaming',
             url: getBasePath() + 'standards/drawing-sheet-naming.html',
-            keywords: ['naming', 'convention', 'file', 'sheet', 'sku', 'drawing', 'standard', 'project code', 'discipline', 'revision', 'architecture', 'structural', 'mechanical', 'electrical'],
-            description: 'Standard file naming convention for drawing sheets'
+            keywords: ['drawing', 'sheet', 'filenaming', 'naming', 'protocol', 'discipline', 'zone', 'sub-zone', 'sheet series', 'descriptor', 'revision', 'consultant', 'project code'],
+            description: 'Drawing sheet file naming protocol and conventions'
         },
         {
             title: 'BIM Folder Structure',

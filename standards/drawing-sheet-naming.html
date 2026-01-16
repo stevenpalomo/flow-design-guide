@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drawing Sheet Naming Convention | Flow Design Guide</title>
+    <title>Drawing Sheet Filenaming Protocol | Flow Design Guide</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -62,8 +62,12 @@
         }
 
         .pattern-numbers span {
-            width: 70px;
+            min-width: 50px;
             text-align: center;
+        }
+
+        .pattern-numbers span.wide {
+            min-width: 90px;
         }
 
         .pattern-display {
@@ -71,7 +75,7 @@
             align-items: center;
             justify-content: center;
             font-family: var(--font-mono);
-            font-size: clamp(1.25rem, 3vw, 2rem);
+            font-size: clamp(1rem, 2.5vw, 1.75rem);
             font-weight: 700;
             color: #E89700;
             gap: 0;
@@ -103,15 +107,19 @@
         }
 
         .pattern-labels span {
-            width: 70px;
+            min-width: 50px;
             text-align: center;
-            padding: 0 var(--space-1);
+            padding: 0 2px;
+        }
+
+        .pattern-labels span.wide {
+            min-width: 90px;
         }
 
         /* Code Tables Grid */
         .codes-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: var(--space-6);
             margin-bottom: var(--space-8);
         }
@@ -156,12 +164,21 @@
             font-family: var(--font-mono);
             font-weight: 600;
             color: var(--color-primary);
-            min-width: 50px;
+            min-width: 40px;
             flex-shrink: 0;
         }
 
         .code-desc {
             color: var(--color-text-secondary);
+        }
+
+        .code-note {
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+            font-style: italic;
+            margin-top: var(--space-2);
+            padding-top: var(--space-2);
+            border-top: 1px dashed var(--color-border);
         }
 
         /* How to Read Section */
@@ -282,7 +299,7 @@
             <div class="nav-section">
                 <h3 class="nav-section-title">Standards</h3>
                 <ul class="nav-list">
-                    <li><a href="drawing-sheet-naming.html" class="nav-link active">Drawing Sheet Naming</a></li>
+                    <li><a href="drawing-sheet-naming.html" class="nav-link active">Drawing Sheet Filenaming</a></li>
                     <li><a href="bim-folder-structure.html" class="nav-link">BIM Folder Structure</a></li>
                     <li><a href="bim-models-filenaming.html" class="nav-link">BIM Models Filenaming</a></li>
                 </ul>
@@ -331,7 +348,7 @@
         </div>
 
         <header class="page-header">
-            <h1 class="page-title">Drawing Sheet Naming Convention</h1>
+            <h1 class="page-title">Drawing Sheet Filenaming Protocol</h1>
         </header>
 
         <div class="page-actions">
@@ -345,9 +362,6 @@
             </button>
         </div>
 
-        <!-- Purpose -->
-        <p class="purpose-text">This naming convention ensures consistent file organization across all Flow projects. It enables quick identification of drawing content, supports efficient searching, and maintains clear revision tracking throughout the project lifecycle.</p>
-
         <!-- Filename Pattern -->
         <div class="filename-pattern">
             <div class="pattern-numbers">
@@ -358,48 +372,52 @@
                 <span>(5)</span>
                 <span>(6)</span>
                 <span>(7)</span>
-                <span>(8)</span>
+                <span class="wide">(8)</span>
+                <span>(9)</span>
             </div>
             <div class="pattern-display">
-                <span class="pattern-segment"><span class="value">FLOW</span></span>
+                <span class="pattern-segment"><span class="value">FLW</span></span>
                 <span class="pattern-separator">-</span>
-                <span class="pattern-segment"><span class="value">OLY</span></span>
+                <span class="pattern-segment"><span class="value">XXX</span></span>
                 <span class="pattern-separator">-</span>
                 <span class="pattern-segment"><span class="value">DWG</span></span>
                 <span class="pattern-separator">-</span>
-                <span class="pattern-segment"><span class="value">A</span></span>
+                <span class="pattern-segment"><span class="value">OA</span></span>
+                <span class="pattern-separator">-</span>
+                <span class="pattern-segment"><span class="value">PD</span></span>
                 <span class="pattern-separator">-</span>
                 <span class="pattern-segment"><span class="value">AR</span></span>
                 <span class="pattern-separator">-</span>
-                <span class="pattern-segment"><span class="value">2</span></span>
+                <span class="pattern-segment"><span class="value">101</span></span>
+                <span class="pattern-separator">-</span>
+                <span class="pattern-segment"><span class="value">LEVEL 00</span></span>
                 <span class="pattern-separator">-</span>
                 <span class="pattern-segment"><span class="value">01</span></span>
-                <span class="pattern-separator">-</span>
-                <span class="pattern-segment"><span class="value">R0</span></span>
             </div>
             <div class="pattern-labels">
-                <span>Brand</span>
-                <span>Project</span>
-                <span>Doc Type</span>
+                <span>Lead Consultant</span>
+                <span>Project Code</span>
+                <span>Document Type</span>
                 <span>Zone</span>
+                <span>Sub-zone</span>
                 <span>Discipline</span>
-                <span>Series</span>
-                <span>Descriptor</span>
-                <span>Revision</span>
+                <span>Sheet Series</span>
+                <span class="wide">Descriptor</span>
+                <span>Revision No.</span>
             </div>
         </div>
 
         <!-- Code Tables -->
         <div class="codes-grid">
-            <!-- Brand -->
+            <!-- Lead Consultant -->
             <div class="code-table">
                 <div class="code-table-header">
-                    <h3>Brand</h3>
+                    <h3>Lead Consultant</h3>
                 </div>
                 <div class="code-table-body">
                     <div class="code-row">
-                        <span class="code-value">FLOW</span>
-                        <span class="code-desc">Flow Design Team (Fixed)</span>
+                        <span class="code-value">FLW</span>
+                        <span class="code-desc">Flow Design Team</span>
                     </div>
                 </div>
             </div>
@@ -411,16 +429,16 @@
                 </div>
                 <div class="code-table-body">
                     <div class="code-row">
-                        <span class="code-value">OLY</span>
+                        <span class="code-value">OLA</span>
                         <span class="code-desc">Olaya</span>
                     </div>
                     <div class="code-row">
-                        <span class="code-value">MIA</span>
-                        <span class="code-desc">Miami</span>
+                        <span class="code-value">GRV</span>
+                        <span class="code-desc">Grand View</span>
                     </div>
                     <div class="code-row">
-                        <span class="code-value">ATL</span>
-                        <span class="code-desc">Atlanta</span>
+                        <span class="code-value">WYN</span>
+                        <span class="code-desc">Wynwood</span>
                     </div>
                 </div>
             </div>
@@ -436,12 +454,16 @@
                         <span class="code-desc">Drawing</span>
                     </div>
                     <div class="code-row">
-                        <span class="code-value">SPEC</span>
+                        <span class="code-value">SPC</span>
                         <span class="code-desc">Specification</span>
                     </div>
                     <div class="code-row">
-                        <span class="code-value">CALC</span>
-                        <span class="code-desc">Calculation</span>
+                        <span class="code-value">PPT</span>
+                        <span class="code-desc">Presentation</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">SCH</span>
+                        <span class="code-desc">Schedule</span>
                     </div>
                     <div class="code-row">
                         <span class="code-value">RPT</span>
@@ -453,24 +475,85 @@
             <!-- Zone -->
             <div class="code-table">
                 <div class="code-table-header">
-                    <h3>Zone / Volume</h3>
+                    <h3>Zone</h3>
                 </div>
                 <div class="code-table-body">
                     <div class="code-row">
-                        <span class="code-value">A</span>
+                        <span class="code-value">SW</span>
+                        <span class="code-desc">Site Wide</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">OA</span>
+                        <span class="code-desc">Overall</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">BA</span>
                         <span class="code-desc">Building A</span>
                     </div>
                     <div class="code-row">
-                        <span class="code-value">B</span>
+                        <span class="code-value">BB</span>
                         <span class="code-desc">Building B</span>
                     </div>
+                </div>
+            </div>
+
+            <!-- Sub-Zone -->
+            <div class="code-table">
+                <div class="code-table-header">
+                    <h3>Sub-Zone</h3>
+                </div>
+                <div class="code-table-body">
                     <div class="code-row">
-                        <span class="code-value">P</span>
+                        <span class="code-value">BS</span>
+                        <span class="code-desc">Basement</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">GR</span>
+                        <span class="code-desc">Ground</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">PD</span>
                         <span class="code-desc">Podium</span>
                     </div>
                     <div class="code-row">
-                        <span class="code-value">G</span>
-                        <span class="code-desc">Garage</span>
+                        <span class="code-value">AS</span>
+                        <span class="code-desc">Amenities & Services Floors</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">RF</span>
+                        <span class="code-desc">Roof</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">CS</span>
+                        <span class="code-desc">Core, Stair & Arc-Structure</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">FC</span>
+                        <span class="code-desc">Facade</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">US</span>
+                        <span class="code-desc">Studio</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">U1</span>
+                        <span class="code-desc">1 Bedroom (1BR)</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">U2</span>
+                        <span class="code-desc">2 Bedroom (2BR)</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">U3</span>
+                        <span class="code-desc">3 Bedroom (3BR)</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">U4</span>
+                        <span class="code-desc">4 Bedroom (4BR)</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">RE</span>
+                        <span class="code-desc">Residential Type</span>
                     </div>
                 </div>
             </div>
@@ -482,40 +565,40 @@
                 </div>
                 <div class="code-table-body">
                     <div class="code-row">
-                        <span class="code-value">AR</span>
-                        <span class="code-desc">Architecture</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">ST</span>
-                        <span class="code-desc">Structural</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">ME</span>
-                        <span class="code-desc">Mechanical</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">EL</span>
-                        <span class="code-desc">Electrical</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">PL</span>
-                        <span class="code-desc">Plumbing</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">FP</span>
-                        <span class="code-desc">Fire Protection</span>
+                        <span class="code-value">GN</span>
+                        <span class="code-desc">General</span>
                     </div>
                     <div class="code-row">
                         <span class="code-value">ID</span>
                         <span class="code-desc">Interior Design</span>
                     </div>
                     <div class="code-row">
-                        <span class="code-value">LA</span>
+                        <span class="code-value">AR</span>
+                        <span class="code-desc">Architecture</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">LD</span>
                         <span class="code-desc">Landscape</span>
                     </div>
                     <div class="code-row">
-                        <span class="code-value">ELV</span>
+                        <span class="code-value">ST</span>
+                        <span class="code-desc">Structure</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">ME</span>
+                        <span class="code-desc">Mechanical</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">PL</span>
+                        <span class="code-desc">Plumbing</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">LV</span>
                         <span class="code-desc">Low Voltage</span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">EL</span>
+                        <span class="code-desc">Electrical</span>
                     </div>
                 </div>
             </div>
@@ -527,45 +610,26 @@
                 </div>
                 <div class="code-table-body">
                     <div class="code-row">
-                        <span class="code-value">0</span>
-                        <span class="code-desc">General</span>
+                        <span class="code-value">000</span>
+                        <span class="code-desc">General Sheets</span>
                     </div>
                     <div class="code-row">
-                        <span class="code-value">1</span>
-                        <span class="code-desc">Plans</span>
+                        <span class="code-value">090</span>
+                        <span class="code-desc">SOP & Basement Plans</span>
                     </div>
                     <div class="code-row">
-                        <span class="code-value">2</span>
-                        <span class="code-desc">Elevations</span>
+                        <span class="code-value">100</span>
+                        <span class="code-desc">Floor Plans</span>
                     </div>
                     <div class="code-row">
-                        <span class="code-value">3</span>
-                        <span class="code-desc">Sections</span>
+                        <span class="code-value">125</span>
+                        <span class="code-desc">Reflected Ceiling Plans</span>
                     </div>
                     <div class="code-row">
-                        <span class="code-value">4</span>
-                        <span class="code-desc">Enlarged Plans</span>
+                        <span class="code-value">150</span>
+                        <span class="code-desc">Flooring Plans</span>
                     </div>
-                    <div class="code-row">
-                        <span class="code-value">5</span>
-                        <span class="code-desc">Interior Elevations</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">6</span>
-                        <span class="code-desc">RCP</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">7</span>
-                        <span class="code-desc">Roof</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">8</span>
-                        <span class="code-desc">Schedules</span>
-                    </div>
-                    <div class="code-row">
-                        <span class="code-value">9</span>
-                        <span class="code-desc">Details</span>
-                    </div>
+                    <p class="code-note">Refer to Pg. 6 "Sheet Series"</p>
                 </div>
             </div>
 
@@ -576,30 +640,47 @@
                 </div>
                 <div class="code-table-body">
                     <div class="code-row">
-                        <span class="code-value">01-99</span>
-                        <span class="code-desc">Sequential sheet number</span>
+                        <span class="code-value">LEVEL 00</span>
+                        <span class="code-desc"></span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">LEVEL 15</span>
+                        <span class="code-desc"></span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">NORTH ELEVATION</span>
+                        <span class="code-desc"></span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">WALL SECTION 01</span>
+                        <span class="code-desc"></span>
+                    </div>
+                    <div class="code-row">
+                        <span class="code-value">UNIT TYPE A</span>
+                        <span class="code-desc"></span>
                     </div>
                 </div>
             </div>
 
-            <!-- Revision -->
+            <!-- Revision No. -->
             <div class="code-table">
                 <div class="code-table-header">
-                    <h3>Revision</h3>
+                    <h3>Revision No.</h3>
                 </div>
                 <div class="code-table-body">
                     <div class="code-row">
-                        <span class="code-value">R0</span>
+                        <span class="code-value">00</span>
                         <span class="code-desc">Initial Issue</span>
                     </div>
                     <div class="code-row">
-                        <span class="code-value">R1, R2...</span>
-                        <span class="code-desc">Revisions</span>
+                        <span class="code-value">01</span>
+                        <span class="code-desc">First Revision</span>
                     </div>
                     <div class="code-row">
-                        <span class="code-value">P1, P2...</span>
-                        <span class="code-desc">Preliminary</span>
+                        <span class="code-value">02</span>
+                        <span class="code-desc">Second Revision</span>
                     </div>
+                    <p class="code-note">Increment for each issued change. Internal drafts use 00.</p>
                 </div>
             </div>
         </div>
@@ -607,8 +688,8 @@
         <!-- How to Read -->
         <div class="how-to-read">
             <h3>How to Read</h3>
-            <div class="example-filename">FLOW-OLY-DWG-A-AR-2-01-R0</div>
-            <p class="example-explanation">"This is a Flow project drawing for Olaya, specifically a Drawing for Building A, prepared by Architecture, showing Elevations (series 2), sheet 01, at initial issue."</p>
+            <div class="example-filename">FLW-OLA-DWG-TA-AR-201-NORTH ELEV-02</div>
+            <p class="example-explanation">"Architectural elevation on Sheet #201, showing the north elevation of Tower A at Flow Olaya, second revision."</p>
         </div>
 
         <!-- Related Topics -->
