@@ -9,67 +9,61 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/styles.css">
     <style>
-        /* Page-specific styles for folder structure */
+        /* Page-specific styles for folder structure visualization */
 
-        /* Folder Tree Visualization */
-        .folder-tree {
-            background: var(--color-surface);
+        /* Folder Diagram - Main Container */
+        .folder-diagram {
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
             border-radius: var(--radius-lg);
             padding: var(--space-8);
-            margin: var(--space-6) 0;
+            margin: var(--space-8) 0;
             overflow-x: auto;
         }
 
-        .tree-container {
+        .folder-diagram-inner {
             display: flex;
-            gap: var(--space-6);
-            min-width: 800px;
+            gap: var(--space-4);
+            min-width: 900px;
         }
 
-        .tree-column {
-            flex: 1;
-            min-width: 180px;
+        /* Folder Column */
+        .folder-column {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
         }
 
-        .tree-column.root {
-            flex: 0 0 auto;
-            min-width: 160px;
-        }
-
-        .tree-column-header {
-            font-size: var(--text-xs);
-            font-weight: 600;
-            color: var(--color-text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: var(--space-3);
-            padding-bottom: var(--space-2);
-            border-bottom: 1px solid var(--color-border);
-        }
-
+        /* Folder Item */
         .folder-item {
             display: flex;
             align-items: center;
             gap: var(--space-2);
             padding: var(--space-2) var(--space-3);
-            margin-bottom: var(--space-1);
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
             border-radius: var(--radius-md);
             font-size: var(--text-sm);
             color: var(--color-text);
-            transition: background-color var(--transition-fast);
+            white-space: nowrap;
+            transition: all var(--transition-fast);
         }
 
         .folder-item:hover {
-            background: var(--color-bg);
+            border-color: var(--color-primary);
         }
 
         .folder-item.highlighted {
-            background: var(--color-primary-light);
-            border: 1px solid var(--color-primary);
+            background: #FFF8E7;
+            border: 2px solid #E5A000;
+        }
+
+        [data-theme="dark"] .folder-item.highlighted {
+            background: rgba(229, 160, 0, 0.15);
+            border-color: #E5A000;
         }
 
         .folder-item.highlighted .folder-name {
-            color: var(--color-primary);
             font-weight: 600;
         }
 
@@ -81,176 +75,142 @@
         }
 
         .folder-item.highlighted .folder-icon {
-            color: var(--color-primary);
+            color: #E5A000;
         }
 
-        .folder-name {
-            white-space: nowrap;
-        }
-
-        /* Connection lines */
-        .tree-connections {
+        /* Connection Arrow */
+        .connection-arrow {
             display: flex;
             align-items: center;
-            justify-content: center;
-            width: 40px;
-            flex-shrink: 0;
+            padding: 0 var(--space-2);
+            color: var(--color-border);
         }
 
-        .connection-line {
-            width: 2px;
-            height: 100%;
-            background: var(--color-border);
-            position: relative;
+        .connection-arrow svg {
+            width: 24px;
+            height: 24px;
         }
 
-        /* Hierarchy Cards */
-        .hierarchy-cards {
+        /* Highlighted connection */
+        .connection-arrow.highlighted {
+            color: #E5A000;
+        }
+
+        /* Info Section */
+        .info-section {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: var(--space-5);
-            margin: var(--space-8) 0;
+            grid-template-columns: 280px 1fr;
+            gap: var(--space-8);
+            margin-bottom: var(--space-8);
         }
 
         @media (max-width: 900px) {
-            .hierarchy-cards {
+            .info-section {
                 grid-template-columns: 1fr;
             }
         }
 
-        .hierarchy-card {
-            background: var(--color-bg);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-lg);
-            padding: var(--space-6);
-        }
-
-        .hierarchy-card h3 {
-            font-size: var(--text-base);
-            font-weight: 600;
-            color: var(--color-text);
-            margin-bottom: var(--space-2);
-            display: flex;
-            align-items: center;
-            gap: var(--space-2);
-        }
-
-        .hierarchy-card h3 .step-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 24px;
-            height: 24px;
-            background: var(--color-primary);
-            color: white;
-            border-radius: 50%;
-            font-size: var(--text-xs);
-            font-weight: 600;
-        }
-
-        .hierarchy-card p {
-            font-size: var(--text-sm);
-            color: var(--color-text-secondary);
-            line-height: 1.6;
-            margin-bottom: var(--space-3);
-        }
-
-        .hierarchy-card .example {
-            font-family: var(--font-mono);
-            font-size: var(--text-xs);
-            background: var(--color-surface);
-            padding: var(--space-2) var(--space-3);
-            border-radius: var(--radius-md);
-            color: var(--color-primary);
-        }
-
-        /* Folder Lists */
-        .folder-section {
-            margin: var(--space-8) 0;
-        }
-
-        .folder-section h3 {
-            font-size: var(--text-lg);
+        .info-content h2 {
+            font-size: var(--text-xl);
             font-weight: 600;
             color: var(--color-text);
             margin-bottom: var(--space-4);
         }
 
-        .folder-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: var(--space-3);
+        .info-content p {
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-bottom: var(--space-4);
         }
 
-        .folder-entry {
-            display: flex;
-            align-items: flex-start;
-            gap: var(--space-3);
-            padding: var(--space-3) var(--space-4);
-            background: var(--color-bg);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            transition: border-color var(--transition-fast);
-        }
-
-        .folder-entry:hover {
-            border-color: var(--color-primary);
-        }
-
-        .folder-entry .folder-icon {
-            margin-top: 2px;
-        }
-
-        .folder-entry-content {
-            flex: 1;
-        }
-
-        .folder-entry-name {
-            font-family: var(--font-mono);
-            font-size: var(--text-sm);
-            font-weight: 600;
-            color: var(--color-primary);
-            margin-bottom: var(--space-1);
-        }
-
-        .folder-entry-desc {
-            font-size: var(--text-xs);
-            color: var(--color-text-muted);
-            line-height: 1.5;
-        }
-
-        /* Path Example */
-        .path-example {
-            background: var(--color-bg-secondary);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-lg);
-            padding: var(--space-5);
+        .info-list {
+            list-style: none;
             margin: var(--space-6) 0;
         }
 
-        .path-example-label {
+        .info-list li {
+            margin-bottom: var(--space-5);
+        }
+
+        .info-list-title {
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: var(--space-1);
+        }
+
+        .info-list-desc {
+            font-size: var(--text-sm);
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+
+        .info-list-phases {
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+            font-style: italic;
+        }
+
+        /* Example Path */
+        .example-path {
+            background: var(--color-surface);
+            border-radius: var(--radius-md);
+            padding: var(--space-3) var(--space-4);
+            margin-top: var(--space-4);
+        }
+
+        .example-path-label {
             font-size: var(--text-xs);
             font-weight: 600;
             color: var(--color-text-muted);
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            margin-bottom: var(--space-2);
+            margin-bottom: var(--space-1);
         }
 
-        .path-example-code {
+        .example-path-code {
             font-family: var(--font-mono);
             font-size: var(--text-sm);
-            color: var(--color-text);
-            word-break: break-all;
-        }
-
-        .path-example-code .separator {
-            color: var(--color-text-muted);
-        }
-
-        .path-example-code .highlight {
             color: var(--color-primary);
-            font-weight: 600;
+        }
+
+        /* Page Meta */
+        .page-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+            margin-bottom: var(--space-6);
+            padding-bottom: var(--space-4);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .page-meta-section {
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .page-meta-date {
+            font-weight: 500;
+        }
+
+        /* Scrollbar styling for diagram */
+        .folder-diagram::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .folder-diagram::-webkit-scrollbar-track {
+            background: var(--color-surface);
+            border-radius: 4px;
+        }
+
+        .folder-diagram::-webkit-scrollbar-thumb {
+            background: var(--color-border);
+            border-radius: 4px;
+        }
+
+        .folder-diagram::-webkit-scrollbar-thumb:hover {
+            background: var(--color-text-muted);
         }
     </style>
 </head>
@@ -329,25 +289,15 @@
         </div>
     </aside>
 
-    <!-- On-Page Table of Contents -->
-    <nav class="toc">
-        <h4 class="toc-title">On this page</h4>
-        <ul class="toc-list">
-            <li><a href="#purpose" class="toc-link">Purpose</a></li>
-            <li><a href="#hierarchy" class="toc-link">Hierarchy Overview</a></li>
-            <li><a href="#discipline-folders" class="toc-link">Discipline Folders</a></li>
-            <li><a href="#bim-subfolders" class="toc-link">BIM Subfolders</a></li>
-        </ul>
-    </nav>
-
     <!-- Main Content -->
     <main class="main-content">
+        <div class="page-meta">
+            <span class="page-meta-section">INTRO</span>
+            <span class="page-meta-date">Design Guide Book - 001 / Rev: A</span>
+        </div>
+
         <header class="page-header">
-            <div class="breadcrumb">
-                <a href="../index.html">Home</a> / <a href="#">Standards</a> / <span>BIM Folder Structure</span>
-            </div>
             <h1 class="page-title">BIM Project Folder Structure</h1>
-            <p class="page-subtitle">A standardized folder structure ensures every team member can locate files quickly, maintains consistency across projects, and streamlines collaboration between disciplines.</p>
         </header>
 
         <div class="page-actions">
@@ -361,440 +311,119 @@
             </button>
         </div>
 
-        <!-- Purpose Section -->
-        <section id="purpose" class="content-section">
-            <h2>Purpose</h2>
-            <p>A standardized folder structure ensures every team member can locate files quickly, maintains consistency across projects, and streamlines collaboration between disciplines.</p>
-        </section>
+        <!-- Info Section with Diagram -->
+        <div class="info-section">
+            <div class="info-content">
+                <h2>Purpose</h2>
+                <p>A standardized folder structure ensures every team member can locate files quickly, maintains consistency across projects, and streamlines collaboration between disciplines.</p>
 
-        <!-- Hierarchy Overview -->
-        <section id="hierarchy" class="content-section">
-            <h2>Hierarchy Overview</h2>
+                <ul class="info-list">
+                    <li>
+                        <div class="info-list-title">1. Project Root</div>
+                        <div class="info-list-desc">Named with the project number<br>Contains all discipline and document folders</div>
+                    </li>
+                    <li>
+                        <div class="info-list-title">2. Discipline Folders (02-ARC)</div>
+                        <div class="info-list-desc">Organized by design phase</div>
+                        <div class="info-list-phases">GN, BIM, CD, PD, DD, TD, IFC</div>
+                    </li>
+                    <li>
+                        <div class="info-list-title">3. BIM Subfolder (02-BIM)</div>
+                        <div class="info-list-desc">Contains working models, linked files, exports, and coordination documents<br>Structured for efficient model management</div>
+                    </li>
+                </ul>
 
-            <div class="hierarchy-cards">
-                <div class="hierarchy-card">
-                    <h3><span class="step-number">1</span> Project Root</h3>
-                    <p>Named with the project number. Contains all discipline and document folders.</p>
-                    <div class="example">PROJECT NUMBER</div>
-                </div>
-
-                <div class="hierarchy-card">
-                    <h3><span class="step-number">2</span> Discipline Folders</h3>
-                    <p>Organized by design phase: GN, BIM, CD, PD, DD, TD, IFC</p>
-                    <div class="example">02-ARC, 02-BIM, 03-STR...</div>
-                </div>
-
-                <div class="hierarchy-card">
-                    <h3><span class="step-number">3</span> BIM Subfolder</h3>
-                    <p>Contains working models, linked files, exports, and coordination documents. Structured for efficient model management.</p>
-                    <div class="example">02-BIM / 01-MODELS (WIP)</div>
+                <div class="example-path">
+                    <div class="example-path-label">eg:</div>
+                    <div class="example-path-code">PROJECT NUMBER / 02-ARC / 02-BIM / 01-MODELS (WIP)</div>
                 </div>
             </div>
 
-            <!-- Path Example -->
-            <div class="path-example">
-                <div class="path-example-label">Example Path</div>
-                <div class="path-example-code">
-                    <span class="highlight">PROJECT NUMBER</span>
-                    <span class="separator"> / </span>
-                    <span class="highlight">02-ARC</span>
-                    <span class="separator"> / </span>
-                    <span class="highlight">02-BIM</span>
-                    <span class="separator"> / </span>
-                    <span class="highlight">01-MODELS (WIP)</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Discipline Folders -->
-        <section id="discipline-folders" class="content-section">
-            <h2>Discipline Folders</h2>
-            <p>The project root contains numbered folders for each discipline and document type. This structure allows for clear organization by project phase.</p>
-
-            <div class="folder-grid">
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">00-ARCHIVE</div>
-                        <div class="folder-entry-desc">Archived files and superseded documents</div>
+            <!-- Folder Diagram -->
+            <div class="folder-diagram">
+                <div class="folder-diagram-inner">
+                    <!-- Column 1: Project Root -->
+                    <div class="folder-column">
+                        <div class="folder-item">
+                            <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                            </svg>
+                            <span class="folder-name">"PROJECT NUMBER"</span>
+                        </div>
                     </div>
-                </div>
 
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">01-DMT</div>
-                        <div class="folder-entry-desc">Document Management & Transmittals</div>
+                    <!-- Arrow -->
+                    <div class="connection-arrow">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
                     </div>
-                </div>
 
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">02-ARC</div>
-                        <div class="folder-entry-desc">Architecture</div>
+                    <!-- Column 2: Discipline Folders -->
+                    <div class="folder-column">
+                        <div class="folder-item"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">00-ARCHIVE</span></div>
+                        <div class="folder-item"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">01-DMT</span></div>
+                        <div class="folder-item highlighted"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">02-ARC</span></div>
+                        <div class="folder-item"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">03-STR</span></div>
+                        <div class="folder-item"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">04-MEP</span></div>
+                        <div class="folder-item"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">05-INT</span></div>
+                        <div class="folder-item"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">06-LSD</span></div>
+                        <div class="folder-item"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">07-VIZ</span></div>
+                        <div class="folder-item"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">08-INFRA</span></div>
+                        <div class="folder-item"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">09-SUB-CON</span></div>
+                        <div class="folder-item"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">10-BOQ</span></div>
+                        <div class="folder-item"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">11-SUPRV</span></div>
+                        <div class="folder-item"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">12-CONTRC</span></div>
+                        <div class="folder-item"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">13-FM</span></div>
+                        <div class="folder-item"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">14-DOCS</span></div>
+                        <div class="folder-item"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">15-CORRES</span></div>
+                        <div class="folder-item"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">16-SUBM</span></div>
+                        <div class="folder-item"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">17-APPRV</span></div>
+                        <div class="folder-item"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">18-TEMP</span></div>
                     </div>
-                </div>
 
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">03-STR</div>
-                        <div class="folder-entry-desc">Structural Engineering</div>
+                    <!-- Arrow -->
+                    <div class="connection-arrow highlighted">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
                     </div>
-                </div>
 
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">04-MEP</div>
-                        <div class="folder-entry-desc">Mechanical, Electrical, Plumbing</div>
+                    <!-- Column 3: Design Phases -->
+                    <div class="folder-column">
+                        <div class="folder-item"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">01-GN</span></div>
+                        <div class="folder-item highlighted"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">02-BIM</span></div>
+                        <div class="folder-item"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">03-CD</span></div>
+                        <div class="folder-item"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">04-PD</span></div>
+                        <div class="folder-item"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">05-DD</span></div>
+                        <div class="folder-item"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">06-TD (OPT)</span></div>
+                        <div class="folder-item"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">07-IFC</span></div>
                     </div>
-                </div>
 
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">05-INT</div>
-                        <div class="folder-entry-desc">Interior Design</div>
+                    <!-- Arrow -->
+                    <div class="connection-arrow highlighted">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
                     </div>
-                </div>
 
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">06-LSD</div>
-                        <div class="folder-entry-desc">Landscape Design</div>
-                    </div>
-                </div>
-
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">07-VIZ</div>
-                        <div class="folder-entry-desc">Visualization & Renderings</div>
-                    </div>
-                </div>
-
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">08-INFRA</div>
-                        <div class="folder-entry-desc">Infrastructure</div>
-                    </div>
-                </div>
-
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">09-SUB-CON</div>
-                        <div class="folder-entry-desc">Subcontractor Documents</div>
-                    </div>
-                </div>
-
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">10-BOQ</div>
-                        <div class="folder-entry-desc">Bill of Quantities</div>
-                    </div>
-                </div>
-
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">11-SUPRV</div>
-                        <div class="folder-entry-desc">Supervision Documents</div>
-                    </div>
-                </div>
-
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">12-CONTRC</div>
-                        <div class="folder-entry-desc">Contract Documents</div>
-                    </div>
-                </div>
-
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">13-FM</div>
-                        <div class="folder-entry-desc">Facilities Management</div>
-                    </div>
-                </div>
-
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">14-DOCS</div>
-                        <div class="folder-entry-desc">General Documentation</div>
-                    </div>
-                </div>
-
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">15-CORRES</div>
-                        <div class="folder-entry-desc">Correspondence</div>
-                    </div>
-                </div>
-
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">16-SUBM</div>
-                        <div class="folder-entry-desc">Submissions</div>
-                    </div>
-                </div>
-
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">17-APPRV</div>
-                        <div class="folder-entry-desc">Approvals</div>
-                    </div>
-                </div>
-
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">18-TEMP</div>
-                        <div class="folder-entry-desc">Temporary Files</div>
+                    <!-- Column 4: BIM Subfolders -->
+                    <div class="folder-column">
+                        <div class="folder-item highlighted"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">01-MODELS (WIP)</span></div>
+                        <div class="folder-item highlighted"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">02-LINKED FILES</span></div>
+                        <div class="folder-item highlighted"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">03-SOURCEFILES</span></div>
+                        <div class="folder-item highlighted"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">04-EXPORT</span></div>
+                        <div class="folder-item highlighted"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">06-BIM DOCS</span></div>
+                        <div class="folder-item highlighted"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">07-DESIGN COOR</span></div>
+                        <div class="folder-item highlighted"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">08-CDE</span></div>
+                        <div class="folder-item highlighted"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">09-TOOLS</span></div>
+                        <div class="folder-item highlighted"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">10-PRESN & MTNG</span></div>
+                        <div class="folder-item highlighted"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">11-PROJ BIM ISSUES & ERRORS</span></div>
+                        <div class="folder-item highlighted"><svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg><span class="folder-name">12-BIM USERS (TEMP)</span></div>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- BIM Subfolders -->
-        <section id="bim-subfolders" class="content-section">
-            <h2>BIM Subfolders (02-BIM)</h2>
-            <p>The BIM folder within each discipline contains working models, linked files, exports, and coordination documents. This structure supports efficient model management and collaboration.</p>
-
-            <div class="folder-grid">
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">01-GN</div>
-                        <div class="folder-entry-desc">General Information</div>
-                    </div>
-                </div>
-
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">02-BIM</div>
-                        <div class="folder-entry-desc">BIM Models & Data</div>
-                    </div>
-                </div>
-
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">03-CD</div>
-                        <div class="folder-entry-desc">Concept Design</div>
-                    </div>
-                </div>
-
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">04-PD</div>
-                        <div class="folder-entry-desc">Preliminary Design</div>
-                    </div>
-                </div>
-
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">05-DD</div>
-                        <div class="folder-entry-desc">Detailed Design</div>
-                    </div>
-                </div>
-
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">06-TD (OPT)</div>
-                        <div class="folder-entry-desc">Tender Design (Optional)</div>
-                    </div>
-                </div>
-
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">07-IFC</div>
-                        <div class="folder-entry-desc">Issued for Construction</div>
-                    </div>
-                </div>
-            </div>
-
-            <h3 style="margin-top: var(--space-8); margin-bottom: var(--space-4);">BIM Working Folders (within 02-BIM)</h3>
-
-            <div class="folder-grid">
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">01-MODELS (WIP)</div>
-                        <div class="folder-entry-desc">Work in Progress models</div>
-                    </div>
-                </div>
-
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">02-LINKED FILES</div>
-                        <div class="folder-entry-desc">External references and linked models</div>
-                    </div>
-                </div>
-
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">03-SOURCEFILES</div>
-                        <div class="folder-entry-desc">Source files and families</div>
-                    </div>
-                </div>
-
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">04-EXPORT</div>
-                        <div class="folder-entry-desc">Exported files (DWG, PDF, IFC)</div>
-                    </div>
-                </div>
-
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">08-BIM DOCS</div>
-                        <div class="folder-entry-desc">BIM documentation and standards</div>
-                    </div>
-                </div>
-
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">07-DESIGN COOR</div>
-                        <div class="folder-entry-desc">Design coordination files</div>
-                    </div>
-                </div>
-
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">08-CDE</div>
-                        <div class="folder-entry-desc">Common Data Environment</div>
-                    </div>
-                </div>
-
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">09-TOOLS</div>
-                        <div class="folder-entry-desc">BIM tools and utilities</div>
-                    </div>
-                </div>
-
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">10-PRESN & MTNG</div>
-                        <div class="folder-entry-desc">Presentations and meeting notes</div>
-                    </div>
-                </div>
-
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">11-PROJ BIM ISSUES & ERRORS</div>
-                        <div class="folder-entry-desc">Issue tracking and error logs</div>
-                    </div>
-                </div>
-
-                <div class="folder-entry">
-                    <svg class="folder-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                    <div class="folder-entry-content">
-                        <div class="folder-entry-name">12-BIM USERS (TEMP)</div>
-                        <div class="folder-entry-desc">Temporary user working folders</div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </div>
 
         <!-- Related Topics -->
         <div class="related-topics">
@@ -807,52 +436,11 @@
                     </svg>
                     Drawing Sheet Naming
                 </a>
-                <a href="#" class="related-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                        <line x1="3" y1="9" x2="21" y2="9"></line>
-                        <line x1="9" y1="21" x2="9" y2="9"></line>
-                    </svg>
-                    BIM Execution Plan
-                </a>
-                <a href="#" class="related-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                        <polyline points="2 17 12 22 22 17"></polyline>
-                        <polyline points="2 12 12 17 22 12"></polyline>
-                    </svg>
-                    Model Standards
-                </a>
             </div>
         </div>
     </main>
 
     <script src="../js/nav.js"></script>
     <script src="../js/auth.js"></script>
-    <script>
-        // On-page TOC active state tracking
-        const tocLinks = document.querySelectorAll('.toc-link');
-        const sections = document.querySelectorAll('section[id]');
-
-        function updateTocActive() {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                if (scrollY >= sectionTop - 100) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            tocLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
-        }
-
-        window.addEventListener('scroll', updateTocActive);
-        updateTocActive();
-    </script>
 </body>
 </html>
