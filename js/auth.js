@@ -179,8 +179,8 @@
 
             .auth-field input:focus {
                 outline: none;
-                border-color: #418083;
-                box-shadow: 0 0 0 3px rgba(65, 128, 131, 0.1);
+                border-color: #E89700;
+                box-shadow: 0 0 0 3px rgba(232, 151, 0, 0.12);
             }
 
             .auth-field input::placeholder {
@@ -200,7 +200,7 @@
                 font-size: 16px;
                 font-weight: 500;
                 font-family: inherit;
-                background: #418083;
+                background: #E89700;
                 color: white;
                 border: none;
                 border-radius: 8px;
@@ -209,7 +209,7 @@
             }
 
             .auth-button:hover {
-                background: #2D595B;
+                background: #C67F00;
             }
 
             .auth-button:active {
